@@ -1,0 +1,20 @@
+Nguyên lý Solid
+
+- Tại sao lại xài: 
++ nếu như nhét chung nhiều code của nhiều thằng vô 1 file -> 
+ăn đạn cả lũ.
++ Thứ 2, giúp cho phần mềm phát triển dễ hơn sau này. (nên phải chọn 1 kiến trúc/chậu để cho phần mềm/cây phát triển
+V.d. 1 ông xây kiến trúc pmem xài 10 năm mới đập thì sẽ out trình hơn 5 năm
+
+Giải nghĩa:
+S: Single responsibility (1 thằng 1 nhiệm vụ -> Chia để trị). V.d. (hàm tính bậc 2 phải có hàm cộng, trừ, nhân, chia RIÊNG) -> mục đích: tạo 1 lần, xài chung
+
+O: Open/Closed Principle: Code cũ thì KO SỬA, chỉ mở rộng. (v.d. 1 tòa nhà 5 tầng đã xây xong, ng chủ muốn thêm tầng, nếu kiến trúc sư cùi bắp, thì đập đi. Nhưng ng xịn thì k, ng ta xây từ tòa 5 tầng đó lên). Nguyên nhân. Nếu sửa cái cũ thì sẽ dính líu đến những thằng khác.
+
+L: Liskov: Class Cha k dc bằng Class con.
+
+Interface: Kế thừa nhiều thằng (cơ bản là 1 điều khoản, bắt buộc phải tuân theo). Tách Interface ra.
+
+Dependency Inversion
+V.d. Mình có pmem gõ văn bản, nó cần 1 cái Google Dịch. Nếu tạo THẲNG 1 GG DỊCH trong đó, thì GG Dịch sẽ bị Gắn cứng vào pmem của mình.
+

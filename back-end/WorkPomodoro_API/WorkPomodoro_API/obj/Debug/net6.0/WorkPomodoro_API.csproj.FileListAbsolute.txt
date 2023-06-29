@@ -1,0 +1,163 @@
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\appsettings.Development.json
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\appsettings.json
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.exe
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.deps.json
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.runtimeconfig.json
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.pdb
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.OpenApi.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.csproj.AssemblyReference.cache
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.GeneratedMSBuildEditorConfig.editorconfig
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.AssemblyInfoInputs.cache
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.AssemblyInfo.cs
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.csproj.CoreCompileInputs.cache
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.MvcApplicationPartsAssemblyInfo.cs
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.MvcApplicationPartsAssemblyInfo.cache
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets\msbuild.WorkPomodoro_API.Microsoft.AspNetCore.StaticWebAssets.props
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets\msbuild.build.WorkPomodoro_API.props
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.WorkPomodoro_API.props
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.WorkPomodoro_API.props
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets.pack.json
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets.build.json
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets.development.json
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\scopedcss\bundle\WorkPomodoro_API.styles.css
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.csproj.CopyComplete
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\refint\WorkPomodoro_API.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.pdb
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.genruntimeconfig.cache
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\ref\WorkPomodoro_API.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Azure.Core.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Azure.Identity.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Drawing.Common.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Memory.Data.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Runtime.Caching.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Security.Permissions.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Windows.Extensions.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\FPT STUFFS\CHUYÊN NGÀNHHH\Semester 5\NPR\Codes\PE SAMPLE\Survive_Master_LongT\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\refint\WorkPomodoro_API.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.pdb
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.csproj.AssemblyReference.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.GeneratedMSBuildEditorConfig.editorconfig
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.AssemblyInfoInputs.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.AssemblyInfo.cs
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.csproj.CoreCompileInputs.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.MvcApplicationPartsAssemblyInfo.cs
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.MvcApplicationPartsAssemblyInfo.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\appsettings.Development.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\appsettings.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.exe
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.deps.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.runtimeconfig.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\WorkPomodoro_API.pdb
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\AutoMapper.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Azure.Core.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Azure.Identity.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\MediatR.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\MediatR.Contracts.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.OpenApi.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Drawing.Common.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Memory.Data.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Runtime.Caching.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Security.Permissions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\System.Windows.Extensions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets\msbuild.WorkPomodoro_API.Microsoft.AspNetCore.StaticWebAssets.props
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets\msbuild.build.WorkPomodoro_API.props
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.WorkPomodoro_API.props
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.WorkPomodoro_API.props
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets.pack.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets.build.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\staticwebassets.development.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\scopedcss\bundle\WorkPomodoro_API.styles.css
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.csproj.CopyComplete
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\WorkPomodoro_API.genruntimeconfig.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\obj\Debug\net6.0\ref\WorkPomodoro_API.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\back-end\WorkPomodoro_API\WorkPomodoro_API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
