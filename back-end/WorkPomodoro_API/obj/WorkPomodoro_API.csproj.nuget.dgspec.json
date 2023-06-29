@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API\\WorkPomodoro_API.csproj": {}
+    "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API.csproj": {}
   },
   "projects": {
-    "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API\\WorkPomodoro_API.csproj": {
+    "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API\\WorkPomodoro_API.csproj",
+        "projectUniqueName": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API.csproj",
         "projectName": "WorkPomodoro_API",
-        "projectPath": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API\\WorkPomodoro_API.csproj",
+        "projectPath": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API.csproj",
         "packagesPath": "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\",
-        "outputPath": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API\\obj\\",
+        "outputPath": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\WorkPomodoro\\back-end\\WorkPomodoro_API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BZkkGBJ/b5tOM6WMzrr//pvMntLfrrfQzzuX3XY11ZsALraqz8mXWV26Tgg5Rz4Jzab806V8eQP1LaykXZusxg==",
+  "dgSpecHash": "+sk0BZU5oS2L0QA/sZL2UUPtCwHR+GZ+yDrsKehtUW7qTooaWHRcGSK1DUISy4PagtKrefbS8nrI8mbbnwBBYw==",
   "success": true,
-  "projectFilePath": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API\\WorkPomodoro_API.csproj",
+  "projectFilePath": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
