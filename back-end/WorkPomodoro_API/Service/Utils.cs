@@ -1,6 +1,7 @@
 ﻿using System.Security.Principal;
-using WorkPomodoro_API.Entity;
-using WorkPomodoro_API.Repository;
+using WorkPomodoro_API.AccountAPI.Entity;
+using WorkPomodoro_API.Context;
+
 
 namespace WorkPomodoro_API.Service
 {

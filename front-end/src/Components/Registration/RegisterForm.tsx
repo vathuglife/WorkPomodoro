@@ -8,7 +8,7 @@ export default function RegisterForm(){
 	let [fullName,updateFullName] = useState("");
 	let [username,updateUsername] = useState("");
 	let [password,updatePassword] = useState("");
-	let REGISTER_URL = "https://localhost:7263/workPomodoro/signup"	
+	let REGISTER_URL = "https://localhost:7263/workpomodoro/signup"	
 	
 	const handleSignup = ()=>{
 								

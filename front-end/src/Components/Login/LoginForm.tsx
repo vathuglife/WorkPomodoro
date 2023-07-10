@@ -1,6 +1,6 @@
 import './LoginForm.css'
 import {useNavigate} from 'react-router-dom'
-import { AxiosResponse, AxiosError } from 'axios'
+import {AxiosResponse,AxiosError } from 'axios'
 import {useState} from 'react'
 import axios from 'axios'
 export default function LoginRegisterForm(){
@@ -8,35 +8,43 @@ export default function LoginRegisterForm(){
 	let [username,updateUsername] = useState("");
 	let [password,updatePassword] = useState("");
 	
-	let REGISTER_URL = "https://localhost:7263/workPomodoro/login"	
+	let REGISTER_URL = "https://localhost:7263/workpomodoro/login"	
 	let navigate = useNavigate();
 	const signup = ()=>{		
 		let path = '/register'
 		navigate(path);
 
 	}
-	const signin = ()=>{
-		let response = axios.post(REGISTER_URL,JSON.stringify({			
+	const signin = async()=>{
+		await axios.post(REGISTER_URL,JSON.stringify({			
 			"username": username,
 			"password": password
 		}			
 		), {headers: { "Content-Type": "application/json" },
         withCredentials: true})
-		.then((response: AxiosResponse) => {		
-			localStorage.setItem("user-token",response.data);
-			let confirmed = confirm("Successfully signed in!");
-			if (confirmed){
-				let route = '/countdown'
-				navigate(route)
+		.then((response:AxiosResponse)=>{
+			let route = ''
+			if(response.status === 200){			
+				localStorage.setItem("user-token",response.data.token);
+				route = '/countdown'
+			}else{
+				route = '/login'
 			}
-		  })
-		  .catch((reason: AxiosError) => {
+			navigate(route)
+		})
+		.catch((reason: AxiosError) => {
 			alert (reason.response?.data)
 			console.log(reason.message)
 		  })
 		
+		
+		
 
-	}
+		}
+		
+		
+		
+	
 
     return(                   
 		<div className="login-container" >

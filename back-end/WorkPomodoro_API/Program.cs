@@ -1,53 +1,88 @@
-
+﻿
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
-using WorkPomodoro_API.Queries;
-using WorkPomodoro_API.Repository;
+using WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails;
+using WorkPomodoro_API.Context;
 using WorkPomodoro_API.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-// Add services to the container.
 
+
+
+// Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
+
+builder.Services.AddAuthorization(auth => {
+    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+        .RequireAuthenticatedUser().Build());
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(
+    option =>
+    {
+        option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+        option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            In = ParameterLocation.Header,
+            Description = "Please enter a valid token",
+            Name = "Authorization",
+            Type = SecuritySchemeType.Http,
+            BearerFormat = "JWT",
+            Scheme = "Bearer"
+        });
+        option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+    });
 
 builder.Services.AddDbContext<WorkPomodoroDbContext>(
-    options=>options.UseSqlServer(builder.Configuration.GetConnectionString("WorkPomodoroDB")));
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("WorkPomodoroDB")));
 builder.Services.AddScoped<Utils>();
 
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 
 
-//Configurations for the Jwt Token
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(o =>
-{
-    o.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey //Generate the Jwt Token based on the Secret Key
-        (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = false,
-        ValidateIssuerSigningKey = true
-    };
-});
+
 
 
 var app = builder.Build();
@@ -66,8 +101,11 @@ app.UseCors(builder => builder
             );
 app.UseHttpsRedirection();
 
+//keep the middleware order.  
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllers();
 

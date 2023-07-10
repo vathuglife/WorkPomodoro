@@ -6,12 +6,73 @@
 .main-container-item{
     display:inline-block;  
     vertical-align: middle;
-    margin-left:30px;
+    margin-left:100px;
 }
 .navbar{
   margin-bottom:100px;
 }
 
+#workspace-title{
+  font-size:30px;
+  font-weight: bold;
+  margin-left:100px;  
+  position:fixed;
+  top:20px
+}
 
+
+#title-container{  
+  width:1005px;
+  left:130px;
+  position:fixed;
+  top:60px;
+}
+
+
+#todo-title{
+  display:inline-block;
+  font-size:30px;
+  margin-top:20px;  
+  margin-right:200px;   
+} 
+#prevBtn{
+  position:fixed;    
+  left:820px;  
+}
+#nextBtn{
+  position:fixed;
+  left:980px;
+}
+.changeComponentBtn{
+  display: inline-block;
+  width:150px;
+  top:80px;
+  height:50px;
+  color:white;
+  background-color: #000034;
+  border-radius:20px 20px 20px 20px;  
+  text-align:center;
+  justify-content: center;     
+  vertical-align: middle;     
+  line-height:50px; /*Vertically aligns the text in the button.
+                     Make sure to set its value equal to the height of the div.*/
   
+}
+.changeComponentBtn:active{
+  background-color: blue;
+}
 
+#stoptime-btn{
+  position: absolute;
+  left:500px;
+}
+.countdown-div{
+  position:relative;
+  left:80px;
+  bottom:130px;
+}
+.stopbtn-pos-div{
+  position:absolute;
+  left:800px;
+  bottom:30px;
+}

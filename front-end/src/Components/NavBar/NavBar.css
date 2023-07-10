@@ -1,32 +1,34 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu:wght@300;700&display=swap');
 
-#navbar{
-    position:fixed;
-    top: 5%;
-    width: 100%;
-    height:100px;    
-    white-space: nowrap;
-}
-#label{
-    margin:0 auto;
-    display:inline-block;
-    font-family:'Quicksand';
-    font-size:30px;
-    font-weight:bold;
-    text-align:center;
-  }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-#profile-container{
-    display:inline-block;
-    white-space:nowrap;        
-    text-align: right;
-}
-.profile-child{
-    display:inline-block;
-}
-#rounded-img{
-    width:100px;
-    height:100px;
-}
+/*Overwrites Tailwind's default styling of some class*/
+@layer components{
+    .sidebar-icon{
+        /*combines all classes (styles) into one.*/
+        @apply relative flex items-center justify-center
+                h-12 w-12 mt-2 mb-2 mx-auto
+                bg-gray-800 text-blue-500                
+                hover:bg-blue-600 hover:text-white 
+                rounded-3xl hover:rounded-xl
+                transition-all duration-300 ease-linear
+                cursor-pointer;
+                ; 
+    }
+    /*IMPORTANT: .sidebar-tooltip is an invisible element by default 
+    meaning that we must hover on the Icon for it to appear.
+    That's why we can't apply the popup effects right in here.
+    To solve this problem, Group is used (see on NavBar.tsx) */
+    .sidebar-tooltip{
+        @apply absolute w-auto p-2 m-2 min-w-max left-14
+        rounded-md shadow-md
+        text-white bg-gray-900
+        text-xs font-bold
+        transition-all duration-100 origin-left scale-0;
+        
+    }
 
+}

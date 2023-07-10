@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using WorkPomodoro_API.DTO;
-using WorkPomodoro_API.Entity;
+using WorkPomodoro_API.AccountAPI.DTO;
+using WorkPomodoro_API.AccountAPI.Entity;
 
 namespace WorkPomodoro_API.Service
 {

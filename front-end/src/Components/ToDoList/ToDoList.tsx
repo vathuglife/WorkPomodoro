@@ -10,6 +10,13 @@ export default function ToDoList(){
     const [taskInput,updateTaskInput] = useState("");
     const [viewMode,updateViewMode] = useState(0);
     
+    const getTasks = async()=>{
+        
+
+    }
+    const saveTasks = async()=>{
+        
+    }
     const handleEnter = (event:any) => {
         
         let enteredKeys = event.target.value        
@@ -40,108 +47,110 @@ export default function ToDoList(){
     
     
     return(
-         <div className="wrapper">    
-            <div className="task-input">  
-                <img src={reactsvg} className="input-icon"></img>                      
-                <input className="task-input" type="text"
-                    value={taskInput}
-                    placeholder="Add a New Task + Enter" onChange={
-                            (e)=>updateTaskInput(e.target.value)                            
-                        } onKeyDown={(e)=>handleEnter(e)}>
-                            
-                        </input>
-            </div>
-            
-            <div className="controls">
-               
-                <ul className="filters">
-                    {filterList.map((option)=>{
-
-                        return(<li 
-                                onClick={()=>{
-                                    updateViewMode(option.mode)
-                                    updateActiveOption(option) //highlights the currently active option (e.g. All, Completed, In Progress)
-                                }}
-                                className={`option ${activeOption == option && "active"}`}> 
-                                {option.option}                                                      
-                            </li>);
-                    })                        
-
-                    }                    
-                </ul>
-                <div onClick={()=>{
-                    let deleteAll = confirm("Do you really want to delete all tasks?")
-                    if (deleteAll==true){
-                        updateTaskList([])
-                    }                                            
-                    }}>
-                    <button className="clear-btn">Clear All</button>
-                </div>                
-            </div>
-            <ul className="task-box">
-                {taskList.map((eachTaskDict) => {
-                        return(<li key={eachTaskDict.id} className="tasklist-item">                                                                
-                    {
-                        (() => {
-                            if(viewMode===0) { //incomplete tasks
-                                if (eachTaskDict.type===0){
-                                    return (
-                                        <div className="task-container">
-                                            <div className="task-content">{eachTaskDict.task}</div>
-                                            <div className='task-status'>
-                                                <input type ='checkbox'onChange={event=>handleCheckbox(
-                                                        event,eachTaskDict.id)}>
-
-                                                </input>
-                                            </div>                                            
-                                        </div>                                                        
-                                    )
-                                }                                                
-                            } else if (viewMode===1) { //completed tasks
-                                if (eachTaskDict.type===1){
-                                    return (
-                                        <div className='task-container'>
-                                            <div className="task-content">{eachTaskDict.task}</div>
-                                            <div className="task-status">Done</div>
-                                        </div>
-                                        
-                                    )
-                                } 
-                            }else if (viewMode===2){ //both incomplete and complete tasks
-                                if (eachTaskDict.type===0){
-                                    return (
-                                        <div className='task-container'>
-                                            <div className="task-content">{eachTaskDict.task}</div>
-                                            {/* This is how to pass the event into the function */}
-                                            <div className="task-status">
-                                                <input type='checkbox'                                                                     
-                                                    onChange={event=>handleCheckbox(
-                                                        event,eachTaskDict.id)}>
-                                                    
-                                                </input>                                                                                   
-                                            </div>
-                                                                                        
-                                        </div>
-                                        
-                                    )
-                                }else{
-                                    return (
-                                        <div>
-                                            <div className="task-content">{eachTaskDict.task}</div>
-                                            <div className="task-status">Done</div>
-                                        </div>
-                                        
-                                    )
-                                } 
-
-                            }
-                        })()  
-                    }
+         <div>            
+            <div className="to-do-list-wrapper">                
+                <div className="task-input">  
+                    <img src={reactsvg} className="input-icon"></img>                      
+                    <input className="task-input" type="text"
+                        value={taskInput}
+                        placeholder="Add a New Task + Enter" onChange={
+                                (e)=>updateTaskInput(e.target.value)                            
+                            } onKeyDown={(e)=>handleEnter(e)}>
                                 
-                    </li>);
-                })}
-            </ul>            
-        </div>      
+                            </input>
+                </div>
+                
+                <div className="controls">
+                
+                    <ul className="filters">
+                        {filterList.map((option)=>{
+
+                            return(<li 
+                                    onClick={()=>{
+                                        updateViewMode(option.mode)
+                                        updateActiveOption(option) //highlights the currently active option (e.g. All, Completed, In Progress)
+                                    }}
+                                    className={`option ${activeOption == option && "active"}`}> 
+                                    {option.option}                                                      
+                                </li>);
+                        })                        
+
+                        }                    
+                    </ul>
+                    <div onClick={()=>{
+                        let deleteAll = confirm("Do you really want to delete all tasks?")
+                        if (deleteAll==true){
+                            updateTaskList([])
+                        }                                            
+                        }}>
+                        <button className="clear-btn">Clear All</button>
+                    </div>                
+                </div>
+                <ul className="task-box">
+                    {taskList.map((eachTaskDict) => {
+                            return(<li key={eachTaskDict.id} className="tasklist-item">                                                                
+                        {
+                            (() => {
+                                if(viewMode===0) { //incomplete tasks
+                                    if (eachTaskDict.type===0){
+                                        return (
+                                            <div className="task-container">
+                                                <div className="task-content">{eachTaskDict.task}</div>
+                                                <div className='task-status'>
+                                                    <input type ='checkbox'onChange={event=>handleCheckbox(
+                                                            event,eachTaskDict.id)}>
+
+                                                    </input>
+                                                </div>                                            
+                                            </div>                                                        
+                                        )
+                                    }                                                
+                                } else if (viewMode===1) { //completed tasks
+                                    if (eachTaskDict.type===1){
+                                        return (
+                                            <div className='task-container'>
+                                                <div className="task-content">{eachTaskDict.task}</div>
+                                                <div className="task-status">Done</div>
+                                            </div>
+                                            
+                                        )
+                                    } 
+                                }else if (viewMode===2){ //both incomplete and complete tasks
+                                    if (eachTaskDict.type===0){
+                                        return (
+                                            <div className='task-container'>
+                                                <div className="task-content">{eachTaskDict.task}</div>
+                                                {/* This is how to pass the event into the function */}
+                                                <div className="task-status">
+                                                    <input type='checkbox'                                                                     
+                                                        onChange={event=>handleCheckbox(
+                                                            event,eachTaskDict.id)}>
+                                                        
+                                                    </input>                                                                                   
+                                                </div>
+                                                                                            
+                                            </div>
+                                            
+                                        )
+                                    }else{
+                                        return (
+                                            <div>
+                                                <div className="task-content">{eachTaskDict.task}</div>
+                                                <div className="task-status">Done</div>
+                                            </div>
+                                            
+                                        )
+                                    } 
+
+                                }
+                            })()  
+                        }
+                                    
+                        </li>);
+                    })}
+                </ul>            
+            </div>  
+        </div>    
     );
 
 }

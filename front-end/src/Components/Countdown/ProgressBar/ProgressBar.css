@@ -1,0 +1,43 @@
+
+  @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;500&display=swap");
+  
+  
+  .progress-bar {        
+    height: 20px;
+    width: 800px;    
+    border-radius: 25px;
+    border: 2px solid black;
+    background-color: #000034;      
+  }
+  
+  .progress-fill {    
+    height: 16px;        
+    background: rgb(34, 193, 195);
+    background: linear-gradient(
+      90deg,
+      
+      rgba(45, 63, 253, 1) 0%
+      rgba(0, 0, 52, 1) 100%
+
+    );
+    border-radius: 15px;
+  }
+  
+  @keyframes progress-forward {
+    0% {
+      width: 0%;
+    }
+    25% {
+      width: 50%;
+    }
+    50% {
+      width: 75%;
+    }
+    75% {
+      width: 85%;
+    }
+    100% {
+      width: 100%;
+    }
+  } ;
+  

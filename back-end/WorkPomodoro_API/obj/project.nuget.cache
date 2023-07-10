@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+sk0BZU5oS2L0QA/sZL2UUPtCwHR+GZ+yDrsKehtUW7qTooaWHRcGSK1DUISy4PagtKrefbS8nrI8mbbnwBBYw==",
+  "dgSpecHash": "U81RCaI82Pvwi0FQlE4J1AET9iUCbe5fFjyuZ2HC4wzaHd1jbKAq9NhW707uoKTxgBk2cHE/CnwetE62X35V5w==",
   "success": true,
   "projectFilePath": "E:\\My Coding Shits\\UI-UX design\\WorkPomodoro\\WorkPomodoro\\back-end\\WorkPomodoro_API\\WorkPomodoro_API.csproj",
   "expectedPackageFiles": [
@@ -24,11 +24,13 @@
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.configuration.binder\\7.0.0\\microsoft.extensions.configuration.binder.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\7.0.0\\microsoft.extensions.options.configurationextensions.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.identity.client\\4.45.0\\microsoft.identity.client.4.45.0.nupkg.sha512",
     "C:\\Users\\VietAnhOdyssey\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\2.19.3\\microsoft.identity.client.extensions.msal.2.19.3.nupkg.sha512",

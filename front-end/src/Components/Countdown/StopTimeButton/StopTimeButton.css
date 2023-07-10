@@ -1,0 +1,27 @@
+#stopbtn-div{   
+    color:red;         
+    left:0;
+    width:60px;
+    height:60px;
+    transition: transform ease 300ms;
+}
+#fa-stop-btn{
+    display:inline-block;
+}
+#hidden-text{
+    display:none;
+    
+    color:black;
+}
+
+#stopbtn-div:hover  { /*Shows up the text when hovered.
+                                     We use > when hidden-text is INSIDE the container.*/
+    
+    border-width:1px;
+    border-color:black;
+    width:300px;
+    left:-100px;
+    display:inline-block;
+    height:80px;
+    border-radius:20px 20px 20px 20px;
+}

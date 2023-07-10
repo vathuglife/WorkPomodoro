@@ -4,7 +4,10 @@ import {useState} from 'react'
 //call the parent function in Countdown.tsx (StartStopTimer)
 //
 
-export default function StartTimeButton(props:any){
+export interface StartTimeBtnProps{
+    stopTimerPare:Boolean;
+}
+export default function StartTimeButton({stopTimer}:StartTimeBtnProps){
     /*
         useState is a React function that contains/updates the data of a component 
         (e.g. input field, label button...)    
@@ -27,7 +30,7 @@ export default function StartTimeButton(props:any){
             <div className="button-container">
                 <a href="#" className="button button--piyo">
                     <div className="button__wrapper" onClick={handleClick}>
-                        <span className="button__text">{label}</span>
+                        <span className="button__text">Wanna stop?</span>
                     </div>
                     <div className="characterBox">
                         <div className="character wakeup">
