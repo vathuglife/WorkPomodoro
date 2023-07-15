@@ -1,27 +1,32 @@
 #stopbtn-div{   
-    color:red;         
+    color:white;         
+    background-color: #b20000;
     left:0;
     width:60px;
     height:60px;
-    transition: transform ease 300ms;
+    border-radius:50%;
+    transition: transform 0.5s, opacity 0.5s; /*animation when the mouse is NOT HOVERED.*/
 }
 #fa-stop-btn{
-    display:inline-block;
-}
-#hidden-text{
-    display:none;
+    position:absolute;
+    top:10px;
+    left:10px;
     
+}
+
+#hidden-text{
+    
+    left:80px; 
     color:black;
 }
 
-#stopbtn-div:hover  { /*Shows up the text when hovered.
-                                     We use > when hidden-text is INSIDE the container.*/
-    
+#stopbtn-div:hover{     
     border-width:1px;
-    border-color:black;
-    width:300px;
-    left:-100px;
-    display:inline-block;
-    height:80px;
+    border-color:#000034;    
+    width:150px;
+    left:-100px;    
+    height:60px;
     border-radius:20px 20px 20px 20px;
+    transform: translateX(-60%); /*Moves the button to the left by 60%*/
+    transition: transform 0.5s, opacity 0.5s; /*Smoothens the transition*/
 }

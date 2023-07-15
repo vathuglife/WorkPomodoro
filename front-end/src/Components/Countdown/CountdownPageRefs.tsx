@@ -4,3 +4,7 @@ export interface CountdownRefs{
     resumeTimer:()=>void;
 
 }
+export interface ToDoListRefs{
+    getTopTask:()=>string;
+
+}

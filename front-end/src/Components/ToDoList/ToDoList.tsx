@@ -1,22 +1,37 @@
 import './ToDoList.css'
 import {useState} from 'react'
 import reactsvg from '../../assets/react.svg'
+import {forwardRef, useImperativeHandle,Ref} from 'react';
+import { ToDoListRefs } from '../Countdown/CountdownPageRefs';
 
 
-export default function ToDoList(){       
+
+export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{       
     const [taskList,updateTaskList] = useState([{id:0,task:"dummy task 1",type:1},{id:1,task:"dummy task 2",type:0}]);
-    const [filterList,updateFilterList] = useState([{id:0,option:'All',mode:2},{id:1,option:'Pending',mode:0},{id:2,option:"Completed",mode:1}]); //allows the selection animation to work.
+    const [filterList,_updateFilterList] = useState([{id:0,option:'All',mode:2},{id:1,option:'Pending',mode:0},{id:2,option:"Completed",mode:1}]); //allows the selection animation to work.
     const [activeOption, updateActiveOption] = useState({ id: 0, option: 'All', mode: 2 });
     const [taskInput,updateTaskInput] = useState("");
     const [viewMode,updateViewMode] = useState(0);
     
-    const getTasks = async()=>{
-        
+    useImperativeHandle(ref,()=>(
+        {getTopTask}
+    )); 
+    function getTopTask():string {
+        let topTask = ''
+     
+        for(let index = 0; index<taskList.length;index++){            
+            let currentTask = taskList[index];
+            console.log('top task: '+currentTask.task)
+            if(currentTask.type===0){                
+                topTask = currentTask.task
+            }
+            break;
+        }        
+        return topTask             
+    }
+      
 
-    }
-    const saveTasks = async()=>{
-        
-    }
+
     const handleEnter = (event:any) => {
         
         let enteredKeys = event.target.value        
@@ -34,7 +49,7 @@ export default function ToDoList(){
             updateTaskList(tempTaskList)   
         }                
     }    
-    const handleCheckbox = (event:any,taskId:number) => {                
+    const handleCheckbox = (_event:any,taskId:number) => {                
         //1. The idea is to create a copy of the current task array, update that copied array, then
         //overwrite it on the previous one.
         let tempTaskList = [...taskList];
@@ -65,7 +80,7 @@ export default function ToDoList(){
                     <ul className="filters">
                         {filterList.map((option)=>{
 
-                            return(<li 
+                            return(<li key={option.id}
                                     onClick={()=>{
                                         updateViewMode(option.mode)
                                         updateActiveOption(option) //highlights the currently active option (e.g. All, Completed, In Progress)
@@ -154,3 +169,4 @@ export default function ToDoList(){
     );
 
 }
+)

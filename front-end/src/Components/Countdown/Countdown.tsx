@@ -1,5 +1,5 @@
 import './Countdown.css'
-import {CountdownRefs} from './CountdownRefs'
+import {CountdownRefs} from './CountdownPageRefs'
 import {useState,useEffect} from 'react'
 import ProgressBar from './ProgressBar/ProgressBar'
 import {forwardRef, useImperativeHandle,Ref} from 'react';
@@ -7,7 +7,7 @@ import {forwardRef, useImperativeHandle,Ref} from 'react';
 
 
 
-export const Countdown = forwardRef((props:{},ref:Ref<CountdownRefs>) => {    
+export const Countdown = forwardRef((_props:{},ref:Ref<CountdownRefs>) => {    
     
     const [parentTimeInStr,updateParentTimeInStr] = useState("25:00");
     const [parentTimeInSecs,updateParentTimeInSecs] = useState(1500);    
@@ -15,6 +15,9 @@ export const Countdown = forwardRef((props:{},ref:Ref<CountdownRefs>) => {
     const [isRunning,updateIsRunning] = useState(false);
   
     /*Needs to research more on React Refs (useImperativeHandle) */
+    useImperativeHandle(ref,()=>(
+        {resetTimer,resumeTimer,pauseTimer}
+    ));
     function resetTimer(){        
         updateParentTimeInSecs(1500);       
         console.log("Current secs remaining:"+parentTimeInSecs)
@@ -23,17 +26,13 @@ export const Countdown = forwardRef((props:{},ref:Ref<CountdownRefs>) => {
         if(isRunning==true) updateIsRunning(false);
         
     }
-    function resumeTimer(){
-        
+    function resumeTimer(){        
         let tempSecs = parentTimeInSecs;
-        tempSecs -=1;
-        console.log('Current tempSecs: ',tempSecs)        
+        tempSecs -=1;                
         updateIsRunning(true)
         console.log('Current parentTimeInSecs: ',parentTimeInSecs)
     }
-    useImperativeHandle(ref,()=>(
-             {resetTimer,resumeTimer,pauseTimer}
-    ));
+   
     useEffect(() => { //runs when AT LEAST A STATE CHANGES 
                 //(e.g. isRunning State, triggered by Start button).        
         if(parentTimeInSecs>0 && isRunning==true){
@@ -47,12 +46,14 @@ export const Countdown = forwardRef((props:{},ref:Ref<CountdownRefs>) => {
             console.log("Current timer is: "+timer)      ;
 
             //Updates the time on the screen (e.g 24:59, 24:58)
-            let min = Math.floor(parentTimeInSecs/60);
-            let secs = parentTimeInSecs%60;
+            let min = Math.floor(parentTimeInSecs/60).toString();
+            let secs = parentTimeInSecs%60                        
+            let minTxt = min.toString()
+            let secsTxt = secs.toString()            
+            if(secs<10) {secsTxt = '0'+secs};
             
-            updateParentTimeInStr(min+":"+secs)
-            let progressBarValue = (parentTimeInSecs/1500*100).toString()+"%";
-            console.log(progressBarValue);
+            updateParentTimeInStr(minTxt+":"+secsTxt)
+            let progressBarValue = (parentTimeInSecs/1500*100).toString()+"%";            
             updateProgressBar(progressBarValue);
             return () => clearInterval(timer);        
             

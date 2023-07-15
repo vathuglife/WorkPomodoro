@@ -1,6 +1,7 @@
 #main-container{   
     white-space: nowrap;
     width:100%;    
+    height:100%;
   
   }
 .main-container-item{
@@ -37,15 +38,19 @@
 } 
 #prevBtn{
   position:fixed;    
-  left:820px;  
+  left:950px;  
+  padding-left:25px;
+  padding-top:10px;
 }
 #nextBtn{
   position:fixed;
-  left:980px;
+  left:1050px;
+  padding-left:25px;
+  padding-top:10px;
 }
 .changeComponentBtn{
   display: inline-block;
-  width:150px;
+  width:80px;
   top:80px;
   height:50px;
   color:white;
@@ -56,23 +61,38 @@
   vertical-align: middle;     
   line-height:50px; /*Vertically aligns the text in the button.
                      Make sure to set its value equal to the height of the div.*/
-  
-}
-.changeComponentBtn:active{
-  background-color: blue;
+  transition: 0.2s /*Smoothens the transition*/
 }
 
+.changeComponentBtn:hover{
+  background-color: blue;  
+  
+}
+
+
+.countdown-div{
+  position:relative;
+  left:5%;
+  top:-50px;
+  height:300px;  
+}
+.stopbtn-pos-div{
+  position:absolute;
+  left:890px;
+  top: 10px;  
+}
 #stoptime-btn{
   position: absolute;
   left:500px;
 }
-.countdown-div{
-  position:relative;
-  left:80px;
-  bottom:130px;
+#current-task-pos{
+  margin-top:100px;
+  position:absolute;  
+  left:140px;
 }
-.stopbtn-pos-div{
-  position:absolute;
-  left:800px;
-  bottom:30px;
+#current-song-pos{
+  margin-top:200px;
+  position:absolute;  
+  left:140px;
 }
+

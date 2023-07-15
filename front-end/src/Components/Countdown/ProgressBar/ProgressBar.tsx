@@ -10,11 +10,7 @@ Props allows the parent component (CountdownPage) to update the time and percent
 values of the ProgressBar Component. */
 export default function ProgressBar({timeRemainingText,progressBarValue}:progressBarProps){
     
-    
-    const style:React.CSSProperties = {
-        
-    }
-
+   
     return (
         <div>
             <h1>{timeRemainingText}</h1>
