@@ -1,0 +1,41 @@
+#song-details-container{
+    
+    border-color:#000034;
+    border-width:1px;
+    width:1000px;
+    height:300px;    
+    border-radius: 25px;
+}
+.video-details-container{
+    padding-top:40px;    
+    position:relative;
+    display:block;
+    width:380px;
+    height:100px;
+    padding-left:50px;
+    margin-bottom:30px;
+}
+.details-title{
+    font-size:30px;
+}
+.details-content{
+    font-weight:bold;
+    font-size:20px;    
+    display: -webkit-box;
+    max-width: 380px;
+    
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+#video-thumbnail{
+    display:inline-block;
+    position:absolute;
+    top:-90px;
+    left:600px;
+    
+   height:auto;
+   width:300px;
+   object-fit:cover;
+    border-radius:25px;
+}

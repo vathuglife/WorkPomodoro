@@ -1,9 +1,8 @@
 import './MusicList.css'
 import {useState} from 'react'
-import reactsvg from '../../assets/react.svg'
 import { FaSearch } from 'react-icons/fa';
-
-
+import axios, { AxiosError,AxiosResponse } from 'axios'
+import {useEffect} from 'react'
 export default function MusicList(){       
     
     const [musicList,updateMusicList] = useState([{id:0,name:"Nier Automata Playlist"},
@@ -13,43 +12,34 @@ export default function MusicList(){
     const [activeOption, updateActiveOption] = useState({ id: 0, option: 'All', mode: 1 });
     const [taskInput,updateTaskInput] = useState("");
     const [viewMode,updateViewMode] = useState(1);
+    let token = localStorage.getItem("user-token")
     
-    const getTasks = async()=>{
+    let POST_CONFIG = {        
+        headers:{           
+            "Content-Type": 'application/json',
+            Authorization: `Bearer ${token}`
+        },
         
-
     }
-    const saveTasks = async()=>{
-        
+    let BODY = {
+        url:"https://www.youtube.com/watch?v=AFclnymNuEo"
     }
-    // const handleEnter = (event:any) => {
-        
-    //     let enteredKeys = event.target.value        
-    //     if(event.key === 'Enter'){
-    //         //The idea is to create a copy of the current task array, update that copied array, then
-    //         //overwrite it on the previous one.
-    //         let tempTaskList = [...taskList]; //Creates a temp array, which contains everything of the TaskList array.
-    //         let currentId = taskList.length 
-    //         updateTaskInput("");
-    //         updateViewMode(0);
-    //         updateActiveOption({ id: 0, option: 'All', mode: 0 })
-    //         console.log(enteredKeys)
-    //         let newTask = {id:currentId,task:enteredKeys,type:0}
-    //         tempTaskList.push(newTask)        
-    //         updateTaskList(tempTaskList)   
-    //     }                
-    // }    
-    // const handleCheckbox = (event:any,taskId:number) => {                
-    //     //1. The idea is to create a copy of the current task array, update that copied array, then
-    //     //overwrite it on the previous one.
-    //     let tempTaskList = [...taskList];
-    //     let chosenTask = tempTaskList[taskId] //2. gets the chosen task out (call it A), based on the Id sent from the checkbox.
-    //     chosenTask["type"] = 1; //3. changes A's "type" attribute from 0 (in progress) to 1 (complete) -> new task A.
-    //     tempTaskList[taskId] = chosenTask; //Replace the old task A (step 2) with the new Task A (step 3)
-    //     updateTaskList(tempTaskList);// updates the old  TaskList with the new TaskList (tempTaskList)        
-    // }
+    // const apiUrl = "https://localhost:7263/workpomodoro/music"
 
-    
-    
+    // const getSongsToPlay = () => {
+    //     axios
+    //         .post(apiUrl,BODY,POST_CONFIG)
+    //         .then(
+    //             (response:AxiosResponse)=>{
+    //             console.log(response.data)
+    //         })
+        
+        
+    // }   
+    useEffect(()=>{
+        console.log('Current token: '+POST_CONFIG.headers.Authorization)
+        // getSongsToPlay()
+    },[])         
     return(
                      
          <div className="music-list-wrapper">             

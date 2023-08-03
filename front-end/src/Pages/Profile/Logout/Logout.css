@@ -1,0 +1,17 @@
+#btn-container{
+    width:8rem;
+    height:3rem;
+    border-radius: 25px;
+    background-color:#b02c2c;
+    color:white;
+    justify-content:center;
+    padding:10px;
+    text-align:center;
+    cursor:default;
+    font-weight:bold;
+}
+#btn-container:active{
+    background-color:#500000
+}
+
+

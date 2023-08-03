@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 
 import {useEffect} from 'react'
-import axios, { AxiosError,AxiosResponse } from 'axios'
+import axios, { AxiosError,AxiosRequestConfig,AxiosResponse } from 'axios'
 
-import PrivateRoutes  from "./PrivateRouter"
-import PublicRoutes from "./PublicRouter"
+import PrivateRoutes  from "./PrivateRoutes"
+import PublicRoutes from "./PublicRoutes"
 import {useState} from 'react'
 
 
@@ -19,15 +19,15 @@ export default function AppRouter (){
         method:"GET",
         headers:{           
             'Content-Type': 'application/json',
-            "Authorization": "Bearer "+token
+            Authorization: "Bearer "+token
         }
-    }
+    } as AxiosRequestConfig
     
     useEffect(()=>{
         //This function is ONLY for checking if the user is logged in or not.        
         authenticate(); 
 
-    })
+    },[])//empty dependency list forces useEffect to run only once.
      
     const authenticate = async ()=>{
         

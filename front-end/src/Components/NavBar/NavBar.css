@@ -7,6 +7,9 @@
 
 /*Overwrites Tailwind's default styling of some class*/
 @layer components{
+    .user-icon{
+        @apply top-96
+    }
     .sidebar-icon{
         /*combines all classes (styles) into one.*/
         @apply relative flex items-center justify-center

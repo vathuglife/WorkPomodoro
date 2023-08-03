@@ -1,4 +1,5 @@
 ﻿
+using Lib.AspNetCore.ServerSentEvents;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +13,8 @@ using System.Reflection;
 using System.Text;
 using WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails;
 using WorkPomodoro_API.Context;
-using WorkPomodoro_API.Service;
+
+using WorkPomodoro_API.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +50,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     option =>
     {
-        option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+        option.SwaggerDoc("v1", new OpenApiInfo { Title = "WorkPomodoro_API", Version = "v1" });
         option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
@@ -59,26 +61,30 @@ builder.Services.AddSwaggerGen(
             Scheme = "Bearer"
         });
         option.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
             {
-                Reference = new OpenApiReference
                 {
-                    Type=ReferenceType.SecurityScheme,
-                    Id="Bearer"
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                        }
+                    },
+                    new string[]{}
                 }
-            },
-            new string[]{}
-        }
-    });
+            });
     });
 
 builder.Services.AddDbContext<WorkPomodoroDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("WorkPomodoroDB")));
-builder.Services.AddScoped<Utils>();
-
+    options => {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("WorkPomodoroDB"));
+        options.EnableSensitiveDataLogging();   
+    });
+builder.Services.AddScoped<AccountUtils>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+
 
 
 
@@ -104,7 +110,6 @@ app.UseHttpsRedirection();
 //keep the middleware order.  
 app.UseAuthentication();
 app.UseAuthorization();
-
 
 
 app.MapControllers();

@@ -12,6 +12,11 @@
     top:20px;
     left:120px;
 }
+#info-text{
+    font-weight:lighter;
+    font-size:25px;
+    
+}
 #youtube-search{
     border-color:#000034;
     border-width: 1.5px;
@@ -20,3 +25,126 @@
     margin:80px 10px 10px 100px;
     border-radius: 25px;
 }
+#url-bar-pos{    
+    margin: -180px 10px 10px 100px;    
+    width:800px;
+    height:50px;
+}
+#fa-link-icon{
+    position:absolute;
+    margin-top:18px;
+    margin-left:10px;
+    
+}
+#url-bar{
+    border-color:#000034;
+    background-color:transparent; 
+    border-radius:25px;
+    width:800px;
+    height:50px;    
+    padding-left:100px;
+}
+#url-bar:hover{
+    border-color:#000034;
+}
+#url-bar:focus{
+    border:0;
+    background-color:white;
+}
+#url-border{
+    width:1000px;
+    height:60px;
+    position:absolute;
+    top:100px;
+    margin-left:100px;         
+    border-radius:25px 25px 25px 25px;
+    border-width:2px;
+    background-color:#000034; 
+    padding-left:10px;
+}
+#input-field{
+    display:inline-block;
+    position:relative;
+    background-color:transparent;
+    color:white;
+    width:900px;
+    margin:0px;
+    padding:0px;    
+    height:60px;    
+    left:14px;
+    font-size:24px;
+    bottom:6px;  
+    
+}
+#input-field:focus{
+    outline:none;
+}
+#fa-link{
+    display:inline-block;
+    color:white;    
+
+    left:10px;
+    margin:0px;
+    padding-top:12px;
+    top:20px;    
+    
+}
+#current-song{
+    color:white;
+    font-size:30px;
+    font-weight:500;
+}
+#song-details-pos{
+    margin-left:100px;
+    margin-top:180px;
+}
+#details-text{
+    position:absolute;
+    font-size:30px;
+    font-weight:bold;
+    color:#000034;    
+    width:200px;
+    text-align:center;
+    top:180px;
+    left:90px;    
+}
+#temp-text{
+    border-color:#000034;
+    border-width:1px;
+    width:1000px;
+    height:300px;    
+    border-radius: 25px;    
+    padding-left:6%; /*Makes the text appear in the middle.*/
+    padding-top:10%;
+    font-size:30px;
+
+}
+#controls-btn-group{
+    position:absolute;
+    top:175px;
+    right:10px;
+    width:150px;
+    height:50px;
+}
+.controls-btn{
+    color:white;
+    width:50px;
+    height:50px;
+    background-color:#000034;
+    padding-top:7px;
+    padding-left:10px;
+    border-radius:30px;
+    transition: transform 0.5s, opacity 0.5s; /*animation when the mouse is NOT HOVERED.*/
+}
+.controls-btn:hover{
+    color:white;
+    width:180px;
+    height:50px;
+    background-color:#000034;
+    padding-top:7px;
+    padding-left:10px;    
+    border-radius:30px;
+    transform: translateX(-75%);
+    transition: transform 0.5s, opacity 0.5s; /*animation when the mouse is NOT HOVERED.*/
+}
+

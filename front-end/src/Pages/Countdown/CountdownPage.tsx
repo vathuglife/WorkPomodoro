@@ -9,7 +9,7 @@ import {useEffect, useState} from 'react'
 import StopTimeButton from "../../Components/Countdown/StopTimeButton/StopTimeButton" 
 import {useRef} from 'react';
 import CurrentTask from "../../Components/Countdown/CurrentTask/CurrentTask"
-import CurrentSong from "../../Components/Countdown/CurrentSong/CurrentSong"
+import MusicPlayer from "../../Components/Countdown/CurrentSong/MusicPlayer"
 import {FaArrowRight} from 'react-icons/fa';
 import {FaArrowLeft} from 'react-icons/fa';
 
@@ -19,6 +19,8 @@ export default function CountdownPage(){
                     /*0 = ToDoList, 1: Music List, 2: Countdown */
     const [currentComponent,updateCurrentComponent] = useState(0);   
     const [topTask,updateTopTask] = useState("");
+    
+    
 
     
     /*List of References (refs) from Parent component (CountdownPage)
@@ -28,12 +30,13 @@ export default function CountdownPage(){
     const cdRef = useRef<CountdownRefs>(null)
     
     useEffect(() =>{//runs every time the currentComponent State changes (previous/continue btn pressed) 
-        /*Updates the Top Task ONLY when we are in the ToDoList component (currentComponent = 0) */
         
+        /*Updates the Top Task ONLY when we are in the ToDoList component (currentComponent = 0) */        
         if(currentComponent==0){
             let currentTopTask = toDoListRef.current?.getTopTask()!            
             console.log("current top task:"+currentTopTask)
-            console.log("current component: "+currentComponent)            
+            console.log("current component: "+currentComponent)
+                        
             updateTopTask(currentTopTask);
         }        
         
@@ -44,14 +47,26 @@ export default function CountdownPage(){
             cdRef.current?.resumeTimer()      
                                         
         }        
+
     },[currentComponent]
     )
 
+    useEffect(()=>{
+        
+        /*This function will run when this component (CountdownPage) unmounts
+         Unmount means: When user decides to change to another page (MusicPage...)
+         This will help us save the task list data to the database with API call.
+        */
+        console.log('component is mounted!')
+        return (()=>{
+            console.log('component is NOT MOUNTED!')
+        })
+    },[]
+    )
     const reset = ()=>{                
         cdRef.current?.pauseTimer();//First click pauses the timer.
         let startOver = confirm("Do you really want to start over?");
-        if(startOver==true) {                                 
-            // cdRef.current.resetTimer()   
+        if(startOver==true) {                                             
             updateCurrentComponent(0)                   
         }else {            
             cdRef.current?.resumeTimer()
@@ -83,9 +98,7 @@ export default function CountdownPage(){
     }
     
 
-
-    
-    
+        
     
     return(                                            
         <div id='main-container'>                        
@@ -132,7 +145,7 @@ export default function CountdownPage(){
                     else if(currentComponent===1) return(                                                   
                         <div className='main-container-item td-list'><MusicList/></div>                         
                     )
-                    else {                        
+                    else {                                                
                         
                         return(
                         /*Persists the Top Task in the ToDoList, then sends that Top Task 
@@ -145,7 +158,7 @@ export default function CountdownPage(){
                                 </div>
                                 <div id='current-task-pos'><CurrentTask topTask={topTask}/>
                                     </div>
-                                <div id='current-song-pos'><CurrentSong/></div>
+                                <div id='current-song-pos'><MusicPlayer/></div>
                             </div>                         
                     )
                         

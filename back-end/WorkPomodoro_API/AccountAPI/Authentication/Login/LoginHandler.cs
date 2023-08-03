@@ -4,8 +4,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using WorkPomodoro_API.AccountAPI.DTO;
-using WorkPomodoro_API.AccountAPI.Entity;
 using WorkPomodoro_API.Context;
+using WorkPomodoro_API.Entity;
 
 namespace WorkPomodoro_API.AccountAPI.Authentication.Login
 {
@@ -23,15 +23,15 @@ namespace WorkPomodoro_API.AccountAPI.Authentication.Login
 
             LoginAccountDTO? loginAccountDTO = request.loginAccountDTO;
 
-            string result = await Task.Run(() =>
+            string result = await System.Threading.Tasks.Task.Run(() =>
             {
-                string username = loginAccountDTO!.username!;
-                string password = loginAccountDTO!.password!;
+                string username = loginAccountDTO!.username!;                                
                 Account account = _dbContext.Accounts
-                .FirstOrDefault(acc => acc.username == username &&
-                    acc.password == password)!;
+                                .FirstOrDefault(acc => acc.username == username)!;
 
-                if (account == null) return null!;
+                
+                if (account == null || !BCrypt.Net.BCrypt.Verify(loginAccountDTO.password, account.password)) 
+                    return null!;
 
                 var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration.GetSection("Jwt:Subject").ToString()!),
@@ -42,8 +42,9 @@ namespace WorkPomodoro_API.AccountAPI.Authentication.Login
                         new Claim("UserName", account.username!),
                     };
 
+                
                 /*IMPORTANT NOTE: DO NOT CONVERT the GetBytes to String! Or else, the generated token will be malfunctioned,
-                 and ASP NET Core won't be able to validate it.
+                 and ASP NET Core won't be able to validate it when the user tries to login again.
                  */
                 var key = new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:Key").Value!));

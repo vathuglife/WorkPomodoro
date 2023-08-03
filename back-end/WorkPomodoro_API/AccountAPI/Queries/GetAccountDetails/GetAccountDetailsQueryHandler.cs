@@ -1,12 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WorkPomodoro_API.AccountAPI.DTO;
-using WorkPomodoro_API.AccountAPI.Entity;
-
 using WorkPomodoro_API.Context;
 
 using WorkPomodoro_API.Entity;
-using WorkPomodoro_API.Service;
+using WorkPomodoro_API.Utilities;
 
 namespace WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails
 {

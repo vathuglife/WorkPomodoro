@@ -9,17 +9,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ffmpeg/core": "^0.12.1",
+    "@ffmpeg/ffmpeg": "^0.12.2",
+    "axios": "^0.24.0",
+    "event-source-polyfill": "^1.0.31",
+    "eventsource": "^2.0.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "idb": "^7.1.1",
     "react": "^18.2.0",
-    "react-axios": "^2.0.6",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.10.1",
     "react-progress-bar": "^0.1.0",
     "react-router-dom": "^6.11.2",
     "react-spring": "^9.7.2",
-    "usehooks-ts": "^2.9.1"
+    "usehooks-ts": "^2.9.1",
+    "youtube-audio-stream": "^0.3.61"
   },
   "devDependencies": {
+    "@types/event-source-polyfill": "^1.0.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",

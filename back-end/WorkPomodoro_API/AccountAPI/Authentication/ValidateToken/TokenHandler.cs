@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Security.Claims;
 using WorkPomodoro_API.AccountAPI.DTO;
-using WorkPomodoro_API.AccountAPI.Entity;
 using WorkPomodoro_API.Context;
+using WorkPomodoro_API.Entity;
 
 namespace WorkPomodoro_API.AccountAPI.Authentication.ValidateToken
 {
@@ -20,7 +20,7 @@ namespace WorkPomodoro_API.AccountAPI.Authentication.ValidateToken
         public async Task<bool> Handle(Token request, CancellationToken cancellationToken)
         {
             List<Claim> claimsList = request.claims!.ToList();
-            bool result = await Task.Run(() =>
+            bool result = await System.Threading.Tasks.Task.Run(() =>
             {
                 /*Extracts the userId from the Claim, then passes it to the DbContext to check for existence in SQL.*/
                 string userId = claimsList.Where(eachClaim => eachClaim.Type == "UserId").
