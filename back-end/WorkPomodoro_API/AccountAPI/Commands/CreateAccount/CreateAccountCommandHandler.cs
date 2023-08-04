@@ -1,17 +1,16 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using WorkPomodoro_API.AccountAPI.DTO;
-using WorkPomodoro_API.Context;
-using WorkPomodoro_API.Entity;
+using WorkPomodoro_API.Entities;
 using WorkPomodoro_API.Utilities;
 
 namespace WorkPomodoro_API.AccountAPI.Commands.CreateAccount
 {
     public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, ReadAccountDTO>
     {
-        private readonly WorkPomodoroDbContext _dbContext;
+        private readonly  WorkPomodoroContext _dbContext;
         private readonly AccountUtils utils;
-        public CreateAccountCommandHandler(WorkPomodoroDbContext dbContext, AccountUtils utils)
+        public CreateAccountCommandHandler(WorkPomodoroContext dbContext, AccountUtils utils)
         {
             this._dbContext = dbContext;
             this.utils = utils;
@@ -23,35 +22,36 @@ namespace WorkPomodoro_API.AccountAPI.Commands.CreateAccount
             return System.Threading.Tasks.Task.Run(() =>
             {
 
-                bool isDuplicated = utils.isUsernameDuplicated(request.createAccountDTO!.username);
+                bool isDuplicated = utils.isUsernameDuplicated(request.createAccountDTO!.Username);
                 if (isDuplicated) return null!;
 
 
                 var mapper = MapperConfig.InitializeMapper();
                 Account newAccount = mapper.Map<Account>(request.createAccountDTO);
-                string hashedPwd = BCrypt.Net.BCrypt.HashPassword(newAccount.password);
+                string hashedPwd = BCrypt.Net.BCrypt.HashPassword(newAccount.Password);
 
                 //Workflow: Get the id of the latest user/recipe,
 
                 /* If the latest user is found: then get that user's id and increment that by one.
                     Then, we will assign it to the new user.
                 * If not: then create the new id called "USR000000".*/
-                string latestUid = _dbContext.Accounts.OrderByDescending(acc => acc.uid).FirstOrDefault()!.uid!;
-                string newUid = "";
-                if (latestUid == null) newUid = "ACC00000";
-                else newUid = utils.idGenerator(latestUid)!;
+                
+                //string newUid = "";
+                //if (latestUid == null) newUid = "ACC00000";
+                //else newUid = utils.idGenerator(latestUid)!;
 
-                newAccount.uid = newUid;
-                newAccount.password = hashedPwd;
-                newAccount.role = "US"; //US for user, AD for admin.
-                newAccount.status = true; //true means active.
+                
+                newAccount.Password = hashedPwd;
+                newAccount.Role = "US"; //US for user, AD for admin.
+                newAccount.Status = true; //true means active.
                 _dbContext.Accounts.Add(newAccount);
                 _dbContext.SaveChanges();
 
 
+                int uid = _dbContext.Accounts.Where(acc => acc==newAccount).FirstOrDefault()!.Uid;
                 //Check if the account is already added, by querying the database again.
                 Account? foundAccount = _dbContext.Accounts
-                    .Where(acc => acc.uid!.Equals(newUid))
+                    .Where(acc => acc.Uid!.Equals(uid))
                     .FirstOrDefault();
 
                 if (foundAccount == null) return null;

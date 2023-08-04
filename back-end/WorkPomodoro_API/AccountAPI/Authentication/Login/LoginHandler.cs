@@ -4,16 +4,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using WorkPomodoro_API.AccountAPI.DTO;
-using WorkPomodoro_API.Context;
-using WorkPomodoro_API.Entity;
+using WorkPomodoro_API.Entities;
 
 namespace WorkPomodoro_API.AccountAPI.Authentication.Login
 {
     public class LoginHandler : IRequestHandler<Login, string>
     {
-        private readonly WorkPomodoroDbContext _dbContext;
+        private readonly WorkPomodoroContext _dbContext;
         protected readonly IConfiguration _configuration;
-        public LoginHandler(WorkPomodoroDbContext dbContext, IConfiguration configuration)
+        public LoginHandler(WorkPomodoroContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
             _configuration = configuration;
@@ -25,21 +24,21 @@ namespace WorkPomodoro_API.AccountAPI.Authentication.Login
 
             string result = await System.Threading.Tasks.Task.Run(() =>
             {
-                string username = loginAccountDTO!.username!;                                
+                string username = loginAccountDTO!.Username!;                                
                 Account account = _dbContext.Accounts
-                                .FirstOrDefault(acc => acc.username == username)!;
+                                .FirstOrDefault(acc => acc.Username == username)!;
 
                 
-                if (account == null || !BCrypt.Net.BCrypt.Verify(loginAccountDTO.password, account.password)) 
+                if (account == null || !BCrypt.Net.BCrypt.Verify(loginAccountDTO.Password, account.Password)) 
                     return null!;
 
                 var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration.GetSection("Jwt:Subject").ToString()!),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("UserId", account.uid!),
-                        new Claim("DisplayName", account.name!),
-                        new Claim("UserName", account.username!),
+                        new Claim("UserId", account!.Uid!.ToString()),
+                        new Claim("DisplayName", account.Name!),
+                        new Claim("UserName", account.Username!),
                     };
 
                 

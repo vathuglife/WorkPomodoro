@@ -6,15 +6,14 @@ import axios, { AxiosError,AxiosRequestConfig,AxiosResponse } from 'axios'
 import PrivateRoutes  from "./PrivateRoutes"
 import PublicRoutes from "./PublicRoutes"
 import {useState} from 'react'
-
+import { useNavigate } from "react-router-dom"
 
 
 
 export default function AppRouter (){    
     let USER_INFO_URL = "https://localhost:7263/workpomodoro/validate"	
-    let [authenStatus,updateAuthenStatus] = useState("in-progress");
-    let [status,updateStatus] = useState(100);
-    let token = localStorage.getItem("user-token")
+    let [authenStatus,updateAuthenStatus] = useState("in-progress");    
+    let token = localStorage.getItem("user-token")    
     let GET_CONFIG = {
         method:"GET",
         headers:{           
@@ -27,17 +26,18 @@ export default function AppRouter (){
         //This function is ONLY for checking if the user is logged in or not.        
         authenticate(); 
 
-    },[])//empty dependency list forces useEffect to run only once.
+    })
      
     const authenticate = async ()=>{
         
         await axios.get(USER_INFO_URL, GET_CONFIG)
-        .then((response: AxiosResponse)=>{
-            updateStatus(response.data.status)
+        .then((response: AxiosResponse)=>{            
             if(response.status===200){
                 updateAuthenStatus("authenticated");
+                
             }else{
                 updateAuthenStatus("unauthorized");
+                
             }          
         })
         .catch((error:AxiosError)=>{

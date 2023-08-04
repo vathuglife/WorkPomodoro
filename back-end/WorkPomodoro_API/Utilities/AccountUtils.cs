@@ -4,16 +4,14 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
-using WorkPomodoro_API.Context;
-
-using WorkPomodoro_API.Entity;
+using WorkPomodoro_API.Entities;
 
 namespace WorkPomodoro_API.Utilities
 {
     public class AccountUtils
     {
-        private WorkPomodoroDbContext _dbContext;
-        public AccountUtils(WorkPomodoroDbContext dbContext)
+        private WorkPomodoroContext _dbContext;
+        public AccountUtils(WorkPomodoroContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -49,7 +47,7 @@ namespace WorkPomodoro_API.Utilities
         {
             bool result = false;
             Account? account = _dbContext.Accounts
-                    .Where(acc => acc.username!.Equals(username))
+                    .Where(acc => acc.Username!.Equals(username))
                     .FirstOrDefault();
             if (account != null) { result = true; }
             return result;

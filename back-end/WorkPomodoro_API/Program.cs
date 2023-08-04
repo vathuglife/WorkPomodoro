@@ -12,8 +12,8 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
 using WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails;
-using WorkPomodoro_API.Context;
 
+using WorkPomodoro_API.Entities;
 using WorkPomodoro_API.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -76,7 +76,7 @@ builder.Services.AddSwaggerGen(
             });
     });
 
-builder.Services.AddDbContext<WorkPomodoroDbContext>(
+builder.Services.AddDbContext<WorkPomodoroContext>(
     options => {
         options.UseSqlServer(builder.Configuration.GetConnectionString("WorkPomodoroDB"));
         options.EnableSensitiveDataLogging();   
