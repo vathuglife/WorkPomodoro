@@ -1,5 +1,5 @@
 import './NavBar.css'
-import {FaClock,FaMusic, FaUser} from 'react-icons/fa'
+import {FaBars, FaClock,FaHamburger,FaMusic, FaTasks, FaUser} from 'react-icons/fa'
 import {To, useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -20,10 +20,15 @@ export default function NavBar (){
 
   })
  
-  const SideBarIcon = ({icon,text,url}:SideBarIconProps)=>{
-    
-    const handleClick = ()=>{                 
-        
+  const HamburgerIcon = ()=>{
+    return(
+      <div className='bar-icon'>
+        <FaBars size='26'/>
+      </div>
+    )
+  }
+  const SideBarIcon = ({icon,text,url}:SideBarIconProps)=>{    
+    const handleClick = ()=>{                         
         navigate(url!);
     }
     return(
@@ -40,7 +45,7 @@ export default function NavBar (){
     }
     return(
       /*The top attribute of user-icon class overrides that of the sidebar-icon class. */
-      <div className='sidebar-icon user-icon'
+      <div className='user-icon'
         onClick={handleClick}>
           <SideBarIcon icon={<FaUser/>} text='Username' />
       </div>
@@ -62,13 +67,13 @@ export default function NavBar (){
     <div className="fixed top-0 left-0 h-screen w-16
                   flex flex-col
                   bg-sidebar text-white shadow-lg">                        
+      <HamburgerIcon/>
       <SideBarIcon icon={<FaClock size="28"/>} text='Countdown' url="/countdown"/>
-      <SideBarIcon icon={<FaMusic size="28"/>} text='Music' url="/music"/>                
-      <UserNameIcon></UserNameIcon>
+      <SideBarIcon icon={<FaTasks size="28"/>} text='Tasks' url="/tasks"/>                
+      <SideBarIcon icon={<FaMusic size="28"/>} text='Music' url="/music"/>                      
+      <UserNameIcon/>
     </div>
-    
-    
-    
+            
     </div>
 
   );

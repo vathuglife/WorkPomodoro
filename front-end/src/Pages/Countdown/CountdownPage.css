@@ -13,7 +13,7 @@
   margin-bottom:100px;
 }
 
-#workspace-title{
+#page-title{
   font-size:30px;
   font-weight: bold;
   margin-left:100px;  
@@ -67,6 +67,13 @@
 .changeComponentBtn:hover{
   background-color: blue;  
   
+}
+.confirm-start-btn-pos{
+  display:block;  
+  left:10%;
+  padding-left:1%;
+  width:200px;  
+  margin: 0 auto;
 }
 
 

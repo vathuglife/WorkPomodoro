@@ -138,7 +138,7 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
     
     
     return(
-         <div>            
+                  
             <div className="to-do-list-wrapper">                
                 <div className="task-input">  
                     <img src={reactsvg} className="input-icon"></img>                      
@@ -259,8 +259,7 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
                         </li>);
                     })}
                 </ul>            
-            </div>  
-        </div>    
+            </div>          
     );
 
 }

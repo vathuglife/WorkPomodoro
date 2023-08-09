@@ -29,17 +29,6 @@ namespace WorkPomodoro_API.AccountAPI.Commands.CreateAccount
                 var mapper = MapperConfig.InitializeMapper();
                 Account newAccount = mapper.Map<Account>(request.createAccountDTO);
                 string hashedPwd = BCrypt.Net.BCrypt.HashPassword(newAccount.Password);
-
-                //Workflow: Get the id of the latest user/recipe,
-
-                /* If the latest user is found: then get that user's id and increment that by one.
-                    Then, we will assign it to the new user.
-                * If not: then create the new id called "USR000000".*/
-                
-                //string newUid = "";
-                //if (latestUid == null) newUid = "ACC00000";
-                //else newUid = utils.idGenerator(latestUid)!;
-
                 
                 newAccount.Password = hashedPwd;
                 newAccount.Role = "US"; //US for user, AD for admin.

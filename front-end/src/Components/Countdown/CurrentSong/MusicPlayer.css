@@ -15,9 +15,12 @@
     left:28px;
 }
 #current-song{
+    position:absolute;
     color:white;
-    font-size:30px;
+    font-size:20px;
     font-weight:500;
+    text-overflow:ellipsis;
+    width:100px;
 }
 #prev-song{
     position: absolute;

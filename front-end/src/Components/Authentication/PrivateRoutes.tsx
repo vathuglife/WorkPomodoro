@@ -3,6 +3,7 @@ import CountdownPage from "../../Pages/Countdown/CountdownPage"
 import NavBar from "../NavBar/NavBar"
 import MusicPage from "../../Pages/Music/MusicPage"
 import ProfilePage from '../../Pages/Profile/Main/ProfilePage';
+import { TaskPage } from '../../Pages/Tasks/Main/TaskPage';
 export default function PrivateRoutes() {
     return (
         <div>
@@ -11,6 +12,7 @@ export default function PrivateRoutes() {
             <Routes>
                 <Route path='countdown' element={<CountdownPage />} />
                 <Route path='music' element={<MusicPage />} />
+                <Route path='tasks' element={<TaskPage />} />
                 <Route path='profile' element={<ProfilePage/>}/>
                 <Route path='*' element={<Navigate to='/countdown' replace />} />
             </Routes>

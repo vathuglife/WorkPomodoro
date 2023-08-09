@@ -6,7 +6,7 @@ import axios, { AxiosError,AxiosRequestConfig,AxiosResponse } from 'axios'
 import PrivateRoutes  from "./PrivateRoutes"
 import PublicRoutes from "./PublicRoutes"
 import {useState} from 'react'
-import { useNavigate } from "react-router-dom"
+
 
 
 

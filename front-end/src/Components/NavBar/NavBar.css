@@ -7,8 +7,12 @@
 
 /*Overwrites Tailwind's default styling of some class*/
 @layer components{
+    .bar-icon{
+        @apply relative flex items-center justify-center
+                h-12 w-12 mx-auto mt-2 mb-2
+    }
     .user-icon{
-        @apply top-96
+        @apply mt-64
     }
     .sidebar-icon{
         /*combines all classes (styles) into one.*/

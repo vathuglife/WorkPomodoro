@@ -23,7 +23,7 @@ export default function RegisterForm(){
 			
 			let confirmed = confirm("Successfully signed up!");
 			if (confirmed){
-				let route = '/'
+				let route = '/login'
 				navigate(route)
 			}
 		  })

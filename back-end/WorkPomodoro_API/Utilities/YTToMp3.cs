@@ -14,13 +14,24 @@ namespace WorkPomodoro_API.Utilities
          This means: We add another Method (GetMP3) to existing types (HttpContext). 
         To use it, just call: HttpContext.GetMP3*/
         private static long? totalProgress = 0;
+        private static string msg = "";
         public static async Task GetProgress(this HttpContext ctx)
         {
-
-            await ctx.Response.WriteAsync("data: " + totalProgress + "\n");
+            
+            if (totalProgress < 100)
+            {
+                await ctx.Response.WriteAsync("data: Downloaded: " + totalProgress + "%\n");
+              
+            }
+            else
+            {
+                await ctx.Response.WriteAsync("data: " + msg + "\n");
+            }
             await ctx.Response.WriteAsync("\n");
             await ctx.Response.Body.FlushAsync();
         }
+
+        
 
         public static async Task<string> GetMP3(string VideoURL)
         {
@@ -59,18 +70,18 @@ namespace WorkPomodoro_API.Utilities
                     Console.WriteLine("Download Complete");
                 }
             }
-
+            msg = ("Conversion in Progress...");
             string musicPath = Path.Combine(source, $"{MP3Name}");
             var inputFile = new MediaFile { Filename = Path.Combine(source, vid.FullName) };
             var outputFile = new MediaFile { Filename = musicPath };
-
+            
             using (var engine = new Engine())
             {
                 engine.GetMetaData(inputFile);
                 engine.Convert(inputFile, outputFile);
             }
 
-            Console.WriteLine("Conversion complete!");
+            msg = ("Saving to your Browser...");
             /*The byte array MUST BE CONVERTED TO Base64 String, so that it could work with JSON response,
              and be DECODED back to mp3 later on by the front-end.*/
             string mp3Data = Convert.ToBase64String(File.ReadAllBytes(musicPath));

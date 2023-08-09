@@ -26,11 +26,13 @@ export default function LoginRegisterForm(){
 			let route = ''
 			if(response.status === 200){			
 				localStorage.setItem("user-token",response.data.token);
-				route = '/countdown'
-			}else{
-				route = '/login'
+			// 	route = '/countdown'
+			// }else{
+			// 	route = '/login'
+			
+				//Automatic routing to the countdown page is already done by ReactRouter (AppRouter).
+				window.location.reload()
 			}
-			navigate(route)
 		})
 		.catch((reason: AxiosError) => {
 			alert (reason.response?.data)

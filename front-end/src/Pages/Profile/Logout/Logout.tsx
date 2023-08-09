@@ -7,7 +7,7 @@ export const Logout = ()=>{
         let isLogout = confirm('Do you really want to log out now?')
         if (isLogout){
             localStorage.removeItem('user-token')
-            navigator('/')
+            window.location.reload();
         }
     }
     return(

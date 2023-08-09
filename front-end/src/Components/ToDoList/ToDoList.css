@@ -29,17 +29,22 @@
     color:white;
   } 
   .task-status{
-    margin-left:600px;
+    position:absolute;
+    top:1%;
+    right:5%;
     vertical-align: right;
     width:30px;    
     display:inline-block;
+    color:white;
   }
  
   .task-container{
+    position:relative;
     width:1005px;
+    height:auto;
     border-color:#000034;
     border-width:2px;
-    margin-bottom:30px;
+    margin-bottom:20px;
     border-radius:18px;
     padding-left:15px;
     background-color:#000034;
@@ -49,7 +54,8 @@
     margin-right:10px;
     
   }
-  .to-do-list-wrapper {
+  .to-do-list-wrapper {        
+    
     width: 1005px;
     height:400px;    
     background: #fff;       
