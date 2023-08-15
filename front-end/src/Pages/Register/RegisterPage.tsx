@@ -1,6 +1,6 @@
-import LoginForm from "../../Components/Login/LoginForm";
+import LoginForm from "../Login/LoginForm/LoginForm";
 import NavBar from "../../Components/NavBar/NavBar";
-import RegisterForm from '../../Components/Registration/RegisterForm'
+import RegisterForm from "./RegistrationForm/RegisterForm";
 
 export default function RegisterPage(){
     return (

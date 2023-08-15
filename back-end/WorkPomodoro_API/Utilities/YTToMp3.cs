@@ -72,7 +72,8 @@ namespace WorkPomodoro_API.Utilities
             }
             msg = ("Conversion in Progress...");
             string musicPath = Path.Combine(source, $"{MP3Name}");
-            var inputFile = new MediaFile { Filename = Path.Combine(source, vid.FullName) };
+            string videoPath = Path.Combine(source, vid.FullName);
+            var inputFile = new MediaFile { Filename =  videoPath};
             var outputFile = new MediaFile { Filename = musicPath };
             
             using (var engine = new Engine())
@@ -82,9 +83,11 @@ namespace WorkPomodoro_API.Utilities
             }
 
             msg = ("Saving to your Browser...");
+            
             /*The byte array MUST BE CONVERTED TO Base64 String, so that it could work with JSON response,
              and be DECODED back to mp3 later on by the front-end.*/
             string mp3Data = Convert.ToBase64String(File.ReadAllBytes(musicPath));
+            File.Delete(videoPath);
             return mp3Data;
 
         }

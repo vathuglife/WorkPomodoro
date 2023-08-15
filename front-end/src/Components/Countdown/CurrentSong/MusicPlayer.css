@@ -14,13 +14,17 @@
     top:10px;
     left:28px;
 }
-#current-song{
-    position:absolute;
+#song-title{
+    position:absolute;    
     color:white;
-    font-size:20px;
-    font-weight:500;
-    text-overflow:ellipsis;
-    width:100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size:25px;
+    margin-top:0.5%;
+    font-weight: bold;    
+    width:540px;
+    white-space: nowrap;
 }
 #prev-song{
     position: absolute;

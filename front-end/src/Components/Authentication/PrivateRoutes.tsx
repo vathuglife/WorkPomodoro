@@ -3,7 +3,7 @@ import CountdownPage from "../../Pages/Countdown/CountdownPage"
 import NavBar from "../NavBar/NavBar"
 import MusicPage from "../../Pages/Music/MusicPage"
 import ProfilePage from '../../Pages/Profile/Main/ProfilePage';
-import { TaskPage } from '../../Pages/Tasks/Main/TaskPage';
+import { TaskPage } from '../../Pages/Tasks/TaskPage';
 export default function PrivateRoutes() {
     return (
         <div>

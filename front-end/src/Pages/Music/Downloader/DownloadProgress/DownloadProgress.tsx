@@ -5,7 +5,7 @@ export interface DownloadProgressProps{
 export default function DownloadProgress({progress}:DownloadProgressProps){
     const [width,updateWidth] = useState('1000px');
     const [textColor,updateTextColor] = useState<string>('white')    
-    const [pos,updatePos] = useState<string>('26%')
+    const [pos,updatePos] = useState<string>('')
     useEffect(()=>{                
         updateProgress()    
         
@@ -22,6 +22,7 @@ export default function DownloadProgress({progress}:DownloadProgressProps){
         let numberSection = getProgressInt();
         
         if(numberSection<=100 && numberSection!=0){
+            updatePos('26.8%')
             let remainingWidth = 1000*numberSection/100            
             let actualWidth = 1000-remainingWidth            
             updateWidth(`${actualWidth}px`)

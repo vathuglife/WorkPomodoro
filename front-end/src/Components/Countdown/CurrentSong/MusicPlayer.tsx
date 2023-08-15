@@ -3,45 +3,66 @@ import { FaMusic } from 'react-icons/fa';
 import {useState} from 'react'
 import { FaFastForward } from 'react-icons/fa';
 import { FaFastBackward } from 'react-icons/fa';
-import {useEffect} from 'react'
+import {useEffect,useRef,forwardRef,useImperativeHandle,Ref} from 'react'
 import { Song } from '../../../Pages/Music/AllSongs/AllSongs';
 
+export interface MusicPlayerRefs{
+    play:()=>void
+    pause:()=>void
+}
 
-
-
-export default function MusicPlayer(){
+export const MusicPlayer = forwardRef((_props,ref:Ref<MusicPlayerRefs>)=>{
     // const[song,updateSong] = useState<any>()        
-    const [nowPlaying,setNowPlaying] = useState('') 
-    const [isPlaying,setIsPlaying] = useState(false)    
-    //const [playlist,updatePlaylist] = useState<Song[]>([])
+    const [nowPlaying,setNowPlaying] = useState('')          
     const [audioUrl,updateAudioUrl] = useState<string>('')
     const [currentSong,updateCurrentSong] = useState<number>(0)
     const [isLoaded,updateIsLoaded ] = useState<boolean>(false)
-    const player = new Audio()
+    const [playlist,updatePlaylist] = useState<Song[]>([])
+    
+    /*
+        Creates a new instance of HtmlAudioElement, and 
+        PERSIST IT (prevent it from changing) on every re-render. 
+    */
+    const playerRef = useRef<HTMLAudioElement|null>(null)
      
-    useEffect(()=>{                      
-        console.log('i will now be played!')        
-        loadSong
-            .then((tempList)=>{                             
-                //updateIsLoaded(true)                
-                                                    
-                playSong(tempList as Song[])   
-            }) // "then" helps chain the loadSong Promise and the playSong Promise together.
+    /*Workflow:
+        1. 1st useEffect RUNS ONLY ONCE, in order to update "playlist" 
+           with data from IndexedDb)         
+        2. "playlist" is updated + isLoaded is updated -> MusicPlayer is refreshed.
+        3. 2nd useEffect runs -> checks condition of isLoaded
+        4. isLoaded equals to true -> plays song from "playlist"
+    */    
+    useEffect(()=>{                                      
+        loadSongFromDb()                  
         return(()=>{
-            player.pause()
+            playerRef.current?.pause()
             URL.revokeObjectURL(audioUrl)
         })
     },[]) //The dependency list forces useEffect to run only once.      
+
+    
+    useEffect(()=>{
+        if(isLoaded) initSong()
+    },[isLoaded,currentSong])
+/*Dependency list explained:
+- isLoaded: for first time load (After the first useEffect runs)
+- currentSong: when the audio player changes to the next song, currentSong is changed, 
+triggering the initSong() function to run once again.*/
+    
+    
+    useImperativeHandle(ref,()=>({
+        play,pause
+    }))
+    
     
     /*In this case, a Promise does the following:
     - Guarantees that the function right after it (playSong) will run.
     - Guarantees that the functions run SEQUENTIALLY.  */
-    const loadSong  = new Promise ((resolve,reject) => {
+    const loadSongFromDb = () => {
         let dbName = 'workpomodoro'
         let songsObjStore = 'songs'       
         let playlistObjStore = 'playlist'               
-        var request = indexedDB.open(dbName)      
-        let tempList = [] as Song[]
+        var request = indexedDB.open(dbName)            
         
         //Runs when the database is not created/needs to be updated to newer version.
         request.onupgradeneeded = () => {           
@@ -60,34 +81,25 @@ export default function MusicPlayer(){
                 Instead, we can get the result in the onsuccess method.
             */
             let songRequest = store.getAll()
-            songRequest.onsuccess = ()=>{                                             
-                //Resolve (Promise) returns a value if the Promise is handled successfully.
-                //In contrast, Reject returns a value if the Promise fails.
-                let result = songRequest.result
-                result.forEach((song)=>{
-                    tempList.push(song)
-                })
-                resolve(tempList)
-            }          
-            // transaction.oncomplete = ()=>{                
-            //     console.log('CURRENT TEMPLIST:' +tempList)     
-                
-            // }
-        }  
-                              
-    } 
-    )  
-    // const updateSongsListPromise = (tempList:Song[])=>{
-    //     return new Promise((resolve,reject)=>{
-    //         updatePlaylist(tempList)
-    //         resolve(true)
-    //     })
-    // }
+            songRequest.onsuccess = ()=>{                                                            
+                let result = songRequest.result      
+                updatePlaylist(prevArray=>{
+                    const newArray = [...prevArray]
+                    result.forEach((song)=>{
+                        newArray.push(song)
+                    })
+                    return newArray
+                });      
+                updateIsLoaded(true)
+                console.log('Current playlist: '+playlist)                               
+                                 
+            }  
+                                
+        }     
+    }
     
-
-    const playSong = (playlist:Song[]) =>{            
-        const song = playlist[currentSong]
-        
+    const initSong = () =>{            
+        const song = playlist[currentSong]        
         const base64Audio = song['audioBase64'] 
         console.log('base64: '+base64Audio)
         setNowPlaying(song['title'])
@@ -102,32 +114,32 @@ export default function MusicPlayer(){
         const url = URL.createObjectURL(blob); 
         //This url will be used to revoke the audio when user exits the component.
         updateAudioUrl(url)                                         
-        player.src = url;
-        player.play();
+        playerRef.current = new Audio(url)
+        playerRef.current.play()
+        playerRef.current.onended = handleNextSong
     
                             
     }
-    const playPauseSong = ()=>{
-            // On video playing toggle values
-        player.onplaying = function() {
-            setIsPlaying(true)
-        };
-
-        // On video pause toggle values
-        player.onpause = function() {
-            setIsPlaying(true)
-        };
-
-     
-        if (player.paused && !isPlaying) {
-            return player.play();
+    const play = ()=>{
+        if (playerRef.current!.paused){
+            playerRef.current!.play()
         }
-
-    
-        if (!player.paused && isPlaying) {
-            player.pause();
+    }
+    const pause = ()=>{
+        if (playerRef.current!.played){
+            playerRef.current!.pause()
         }
+    }
+    const handleNextSong = ()=>{
         
+        if (currentSong < playlist.length - 1) {
+            console.log('next song plz!')
+            updateCurrentSong(currentSong + 1);
+        } else {
+            // If the playlist is finished, stop playback
+            console.log('not next song yet blyat')
+            playerRef.current!.pause()
+        }
     }
         
     
@@ -135,11 +147,11 @@ export default function MusicPlayer(){
     
     return (
         <div id='current-song-border'>    
-            <div id='fa-music' onClick={playPauseSong}><FaMusic size="30"/></div>
-            <div id='current-song'>{nowPlaying}</div>
+            <div id='fa-music'><FaMusic size="30"/></div>
+            <div id='song-title'>{nowPlaying}</div>
             <div id='prev-song'><FaFastBackward size='28'/></div>
-            <div id='next-song'><FaFastForward size='28'/></div>
-            
+            <div id='next-song'><FaFastForward size='28'/></div>            
         </div>
     );
 }
+)
