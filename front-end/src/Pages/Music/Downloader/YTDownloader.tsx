@@ -54,7 +54,7 @@ export default function YTDownloader(){
         //This technique is using SSE (Server-sent events), rather similar to WebSockets, but simpler.
         const progressEvent = new EventSourcePolyfill(progressApi,progressConfig)
         updateIsDownloading(true)
-        progressEvent.onopen = (e)=>{
+        progressEvent.onopen = ()=>{
             console.log('Successfully connected to Server. Trying to download...')            
         }
         progressEvent.onmessage = (e) => {

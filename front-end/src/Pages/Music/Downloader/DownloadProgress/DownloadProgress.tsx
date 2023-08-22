@@ -21,17 +21,21 @@ export default function DownloadProgress({progress}:DownloadProgressProps){
     const updateProgress = ()=>{        
         let numberSection = getProgressInt();
         
-        if(numberSection<=100 && numberSection!=0){
-            updatePos('26.8%')
+        if(0<numberSection && numberSection<100){
+            updatePos('26.6%')
             let remainingWidth = 1000*numberSection/100            
             let actualWidth = 1000-remainingWidth            
             updateWidth(`${actualWidth}px`)
             if(numberSection>=30){
                 updateTextColor('#000034')
             }           
+        }else if (numberSection==100){
+            updateWidth('0px')
         }else{
             updatePos('18%')
         }
+        
+        
     }
     const progBarFrame:{[key:string]:React.CSSProperties} ={
         container:{

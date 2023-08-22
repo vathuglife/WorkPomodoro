@@ -1,0 +1,15 @@
+.option-container{
+    width:100%;
+    height:20%;
+    margin-bottom:12%;
+    position:relative;
+}
+.option-icon{
+    display:inline-block;
+}
+.option-txt{
+    display:inline-block;
+    margin-left:5%;
+    padding-top:0px;    
+    font-size:18px;
+}

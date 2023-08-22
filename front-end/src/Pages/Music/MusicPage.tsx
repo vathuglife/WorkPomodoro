@@ -10,7 +10,7 @@ import AllSongs from './AllSongs/AllSongs'
 import { useSpring ,animated} from 'react-spring'
 import Playlist from './Playlist/Playlist'
 export default function MusicPage(){               
-    const [currentComponent,updateCurrentComponent] = useState<number>(1)    
+    const [currentComponent,updateCurrentComponent] = useState<number>(0)    
     const springProps = useSpring({
         from:{opacity:0},
         to:{opacity:1},           

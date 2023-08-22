@@ -1,5 +1,5 @@
 export interface CountdownRefs{
-    resetTimer:()=>void;
+    resetTimer:(duration:number)=>void;
     pauseTimer:()=>void;    
     resumeTimer:()=>void;
 

@@ -1,7 +1,5 @@
 import './Logout.css'
-import { useNavigate } from 'react-router-dom'
-export const Logout = ()=>{    
-    const navigator = useNavigate()
+export const Logout = ()=>{        
     const handleLogout = ()=>{
         
         let isLogout = confirm('Do you really want to log out now?')

@@ -7,7 +7,7 @@ export interface HorizontalNavBarProps{
 
 export default function HorizontalNavBar({updateSubComponent}:HorizontalNavBarProps){
     const links = ['Playlist','All Songs','Download']    
-    const [selected,updateSelected] = useState(1);
+    const [selected,updateSelected] = useState(0);
     /*Selection workflow:
     1. User clicks on one of the hyperlinks in links array..
     2. The index of that hyperlink (e.g. 0 - Playlist) is saved. 

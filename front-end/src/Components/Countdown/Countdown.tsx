@@ -6,20 +6,22 @@ import {forwardRef, useImperativeHandle,Ref} from 'react';
 
 
 
+export interface CountdownProps{
+    handleTimesUp:()=>void
+}
 
-export const Countdown = forwardRef((_props:{},ref:Ref<CountdownRefs>) => {    
+export const Countdown = forwardRef(({handleTimesUp}:CountdownProps,ref:Ref<CountdownRefs>) => {    
     
     const [parentTimeInStr,updateParentTimeInStr] = useState("25:00");
     const [parentTimeInSecs,updateParentTimeInSecs] = useState(1500);    
     const [progressBar,updateProgressBar] = useState("100%");        
-    const [isRunning,updateIsRunning] = useState(false);
-  
+    const [isRunning,updateIsRunning] = useState(false);       
     /*Needs to research more on React Refs (useImperativeHandle) */
     useImperativeHandle(ref,()=>(
         {resetTimer,resumeTimer,pauseTimer}
     ));
-    function resetTimer(){        
-        updateParentTimeInSecs(1500);       
+    function resetTimer(duration:number){        
+        updateParentTimeInSecs(duration);       
         console.log("Current secs remaining:"+parentTimeInSecs)
     }  
     function pauseTimer(){
@@ -31,8 +33,20 @@ export const Countdown = forwardRef((_props:{},ref:Ref<CountdownRefs>) => {
         tempSecs -=1;                
         updateIsRunning(true)
         console.log('Current parentTimeInSecs: ',parentTimeInSecs)
-    }
-   
+    }       
+    function recalculateTime(){
+        let min = Math.floor(parentTimeInSecs/60);
+        let secs = parentTimeInSecs%60                        
+        let minTxt = min.toString()
+        let secsTxt = secs.toString()            
+        if(min<10) {minTxt = '0'+min};
+        if(secs<10) {secsTxt = '0'+secs};
+        
+        updateParentTimeInStr(minTxt+":"+secsTxt)
+        let progressBarValue = (parentTimeInSecs/1500*100).toString()+"%";            
+        updateProgressBar(progressBarValue);
+    }    
+
     useEffect(() => { //runs when AT LEAST A STATE CHANGES 
                 //(e.g. isRunning State, triggered by Start button).        
         if(parentTimeInSecs>0 && isRunning==true){
@@ -46,37 +60,24 @@ export const Countdown = forwardRef((_props:{},ref:Ref<CountdownRefs>) => {
             console.log("Current timer is: "+timer)      ;
 
             //Updates the time on the screen (e.g 24:59, 24:58)
-            let min = Math.floor(parentTimeInSecs/60).toString();
-            let secs = parentTimeInSecs%60                        
-            let minTxt = min.toString()
-            let secsTxt = secs.toString()            
-            if(secs<10) {secsTxt = '0'+secs};
+            recalculateTime()
+            return () => clearInterval(timer);            
             
-            updateParentTimeInStr(minTxt+":"+secsTxt)
-            let progressBarValue = (parentTimeInSecs/1500*100).toString()+"%";            
-            updateProgressBar(progressBarValue);
-            return () => clearInterval(timer);        
-            
+        }else if(parentTimeInSecs===0 && isRunning===true){
+            updateParentTimeInStr("00:00")            
+            handleTimesUp()            
         }
+
+        
     },[isRunning,parentTimeInSecs])//Listens to the changes of isRunning props, passed from CountdownPage.    
     
     return(
-        <div id="countdown-box">
-            {/* timeRemText: the time displayed on the screen, 
-                timeRemSecs: the time remaining in seconds, for the progress bar.
-            */}
-            {/* <TimeRemainingCircle 
-                timeRemText={parentTimeInStr} 
-                timeRemSecs={parentTimeInSecs} 
-                className="countdown-box-child">
-            </TimeRemainingCircle>     */}
-            
+        <div id="countdown-box">                      
             <div id="progress-bar"><ProgressBar 
                                 timeRemainingText={parentTimeInStr}
-                                progressBarValue={progressBar}/>
+                                progressBarValue={progressBar}/>            
+                  
             </div>
-          
         </div>
-        
     )
 })

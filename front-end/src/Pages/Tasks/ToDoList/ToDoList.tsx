@@ -6,72 +6,18 @@ import { ToDoListRefs } from '../../../Components/Countdown/CountdownPageRefs';
 import {useRef} from 'react'
 import axios,{AxiosResponse} from 'axios'
 import { FaSave,FaTrash } from 'react-icons/fa';
+import { Task } from './EachTask/EachTask';
+import { EachTask } from './EachTask/EachTask';
 
-export interface Task{
-    name:string;
-    type:number;
-}
 
-export interface EachTaskProps{
-    updateTaskStatus:(event:any,taskId:number)=>void;
-    deleteTask:(taskId:number)=>void
-    index:number;
-    eachTask:Task;
-}
-export const EachTask = ({updateTaskStatus,
-                            deleteTask,
-                            index,eachTask}:EachTaskProps)=>{
-    const [statusColor,updateStatusColor] = useState('red')
-    const [containerColor,updateContainerColor] = useState('white')    
-    
-    
-    
-    const statusStyle:{[key:string]:React.CSSProperties} = {
-        container:{
-            backgroundColor:statusColor,
-            borderColor:statusColor
-        }
-    }
-    const containerStyle:{[key:string]:React.CSSProperties} = {
-        container:{
-            backgroundColor:containerColor,            
-        }
-    }
-    
-    useEffect(()=>{
-        if(eachTask.type===1) updateStatusColor('green')
-        if(index===0) {
-            updateContainerColor('#FFC300')            
-        }
-
-    },[])
-    const handleCheckbox = (event:any,index:number)=>{
-        
-        updateTaskStatus(event,index)
-    }
-    
-    return(        
-        <div className="task-container" style={containerStyle.container}>            
-            <div className='task-status'style={statusStyle.container}
-                onClick={event=>handleCheckbox(event,index)}>                
-            </div> 
-            
-            <div className="task-content">
-                {eachTask.name}
-            </div>
-
-            <div className='delete-task-btn' 
-                onClick={()=>deleteTask(index)}>
-                <FaTrash size='28'/>
-            </div>
-                                                      
-        </div>   
-        
-    )
-}
 export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{       
     const [taskList,updateTaskList] = useState<Task[]>([]);
-    const [filterList,_updateFilterList] = useState([{id:0,option:'All',mode:2},{id:1,option:'Pending',mode:0},{id:2,option:"Completed",mode:1}]); //allows the selection animation to work.
+    const [incompletedTasks,updateIncompletedTasks] = useState<Task[]>([]);
+    const [completedTasks,updateCompletedTasks] = useState<Task[]>([]);
+    const [filterList,_updateFilterList] = useState([{id:0,option:'All',mode:2},
+                                                    {id:1,option:'Pending',mode:0},
+                                                    {id:2,option:"Completed",mode:1}]); 
+                                                    //highlights the selected view mode.
     const [activeOption, updateActiveOption] = useState({ id: 1, option: 'All', mode: 2 });
     const [taskInput,updateTaskInput] = useState("");
     const [viewMode,updateViewMode] = useState(0);
@@ -87,8 +33,18 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
     }
   
     useEffect(()=>{
-        getData()        
+        getData()  
+        
     },[])
+    
+    
+    useEffect(()=>{
+        if(taskList.length!==0)      {
+            filterData()            
+        }
+    },[taskList]) /*if the task list changes (data is loaded into the list 
+                    itself, then runs the filter data function.)*/
+    
     useImperativeHandle(ref,()=>(
         {getTopTask}
     )); 
@@ -97,10 +53,23 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
         console.log('To-Do List is unmounted!')
         axios.get(dataUrl,config)
             .then((response:AxiosResponse)=>{                                
-                updateTaskList(response.data);
+                updateTaskList(()=>{return [...response.data]}) //return keyword forces 
+                                                            //React to update the state ASAP.                                
                 console.log(taskList)
             })
     }
+    
+    const filterData = ()=>{
+        let incompletedTasks:Task[] = [] 
+        let completedTasks:Task[] = []
+        taskList.map((eachTask)=>{
+            if(eachTask.type===0) incompletedTasks.push(eachTask)
+            else completedTasks.push(eachTask)
+        })
+        updateIncompletedTasks([...incompletedTasks])
+        updateCompletedTasks([...completedTasks])
+    }
+
     const saveData = ()=>{
         console.log()
         axios.post(dataUrl,taskList,config)
@@ -170,7 +139,7 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
         //Copies everything in the TaskList array to the prevTaskList object.
         //The three dots are called the spread operator (copies all items in an 
         //existing list to another new one.)
-        let tempTaskList =  [...taskList]
+        let tempTaskList =  [...incompletedTasks]
         
         /*Step 1: Temporarily remove the dragged item (the one user clicks and hold on)
         then saves it in the dragged variable.*/
@@ -186,11 +155,11 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
             console.log(tempTaskList[index])
         }
         
-        /*Step 3: Nullfies the dragged and draggedOver item, for the upcoming operations. */
+        /*Step 3: Nullfies the dragged and draggedOver item, for future operations. */
         draggedItem.current = null;
         draggedOverItem.current = null;
         updateIsSaveBtn(true);
-        updateTaskList(tempTaskList);
+        updateIncompletedTasks(tempTaskList);
     }
     
     const deleteAllTasks = ()=>{        
@@ -202,9 +171,9 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
     }
 
     const deleteTaskById = (taskId:number)=>{
-        let tempList = [...taskList]
+        let tempList = [...incompletedTasks]
         tempList.splice(taskId,1)
-        updateTaskList(tempList)
+        updateIncompletedTasks(tempList)
         updateIsSaveBtn(true)
     }
     
@@ -252,51 +221,64 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
                     </div>
                                    
                 </div>
-                <ul className="task-box">
-                    {taskList.map((eachTask,index) => {
-                            {/*draggable: allows the list item to be dragged */}
-                            {/*onDragEnd: When user releases the mouse, update the position of the tasks again (reupdateTaskList)*/}
-                            {/*e.preventDefault: Prevents the default behavior of a div */}
-                            return(<li key={index} className="tasklist-item" draggable
-                            onDragStart={()=>{draggedItem.current = index} }
-                            onDragEnter={()=>{draggedOverItem.current = index}} 
-                            onDragEnd={reupdateTaskList} 
-                            
-                            onDragOver={(e)=>{e.preventDefault()}} 
-                            
-                            > 
-                        { 
-                            (() => {
-                                if(viewMode===0 && eachTask.type==0) { //incomplete tasks                                    
+                {(()=>{
+                    if(viewMode===0){
+                        return(
+                            <ul className="task-box">
+                                {incompletedTasks.map((task,index)=>{
                                     return (
-                                        <EachTask updateTaskStatus={updateTaskStatus}
-                                                    deleteTask={deleteTaskById}
-                                                    index={index}
-                                                    eachTask={eachTask} />
-                                    )
-                                                                                 
-                                } else if (viewMode===1 && eachTask.type==1) { //completed tasks                                    
-                                        return (
-                                            <EachTask updateTaskStatus={updateTaskStatus}
-                                                    deleteTask={deleteTaskById}        
-                                                    index={index}                                                    
-                                                    eachTask={eachTask} />                                            
+                                        <li key={index} className="tasklist-item" draggable
+                                            onDragStart={()=>{draggedItem.current = index} }
+                                            onDragEnter={()=>{draggedOverItem.current = index}} 
+                                            onDragEnd={reupdateTaskList} 
+                                            
+                                            onDragOver={(e)=>{e.preventDefault()}}> 
+                                             <EachTask updateTaskStatus={updateTaskStatus}
+                                                        deleteTask={deleteTaskById}
+                                                        index={index}
+                                                        eachTask={task}
+                                                        isPendingView={false} />
+                                        </li>
                                         )
-                                     
-                                }else if (viewMode===2){ //both incomplete and complete tasks
-                                        return (
-                                            <EachTask updateTaskStatus={updateTaskStatus}
-                                                    deleteTask={deleteTaskById}        
-                                                    index={index}
-                                                    eachTask={eachTask} />    
+                                })}
+                            </ul>            
+                        )
+                    }else if(viewMode===1){
+                        return(
+                            <ul className="task-box">
+                                {completedTasks.map((task,index)=>{
+                                    return (
+                                        <li key={index} className="tasklist-item"> 
+                                             <EachTask updateTaskStatus={updateTaskStatus}
+                                                        deleteTask={deleteTaskById}
+                                                        index={index}
+                                                        eachTask={task}
+                                                        isPendingView={true} />
+                                        </li>
                                         )
-                                }
-                            })()  
-                        }
-                                    
-                        </li>);
-                    })}
-                </ul>            
+                                })}
+                            </ul>            
+                        )
+                    }
+                    else{
+                        return(
+                            <ul className="task-box">
+                                {taskList.map((task,index)=>{
+                                    return (
+                                        <li key={index} className="tasklist-item" > 
+                                             <EachTask updateTaskStatus={updateTaskStatus}
+                                                        deleteTask={deleteTaskById}
+                                                        index={index}
+                                                        eachTask={task}
+                                                        isPendingView={true} />
+                                        </li>
+                                        )
+                                })}
+                            </ul>            
+                        )
+                    }
+                })()}
+                
             </div>          
     );
 

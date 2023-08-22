@@ -1,0 +1,105 @@
+#main-container{   
+    white-space: nowrap;
+    width:100%;    
+    height:100%;
+  
+  }
+.main-container-item{
+    display:inline-block;  
+    vertical-align: middle;
+    margin-left:100px;
+}
+.navbar{
+  margin-bottom:100px;
+}
+
+#page-title{
+  font-size:30px;
+  font-weight: bold;
+  margin-left:100px;  
+  position:fixed;
+  top:20px
+}
+
+
+#title-container{  
+  width:1005px;
+  left:130px;
+  position:fixed;
+  top:60px;
+}
+
+
+#todo-title{
+  display:inline-block;
+  font-size:30px;
+  margin-top:20px;  
+  margin-right:200px;   
+} 
+#prevBtn{
+  position:fixed;    
+  left:950px;  
+  padding-left:25px;
+  padding-top:10px;
+}
+#nextBtn{
+  position:fixed;
+  left:1050px;
+  padding-left:25px;
+  padding-top:10px;
+}
+.changeComponentBtn{
+  display: inline-block;
+  width:80px;
+  top:80px;
+  height:50px;
+  color:white;
+  background-color: #000034;
+  border-radius:20px 20px 20px 20px;  
+  text-align:center;
+  justify-content: center;     
+  vertical-align: middle;     
+  line-height:50px; /*Vertically aligns the text in the button.
+                     Make sure to set its value equal to the height of the div.*/
+  transition: 0.2s /*Smoothens the transition*/
+}
+
+.changeComponentBtn:hover{
+  background-color: blue;  
+  
+}
+.confirm-start-btn-pos{
+  display:block;  
+  left:10%;
+  padding-left:1%;
+  width:200px;  
+  margin: 0 auto;
+}
+
+
+.countdown-div{
+  position:relative;
+  left:5%;
+  top:-50px;
+  height:300px;  
+}
+.stopbtn-pos-div{
+  position:absolute;
+  left:890px;
+  top: 10px;  
+}
+#stoptime-btn{
+  position: absolute;
+  left:500px;
+}
+#current-task-pos{
+  margin-top:100px;
+  position:absolute;  
+  left:140px;
+}
+#current-song-pos{
+  margin-top:200px;
+  position:absolute;  
+  left:140px;
+}
+
