@@ -2,7 +2,7 @@
 This is a Pomodoro-based Web application that is aimed at helping you become more productive.
 
 ## Technologies used
-ReactJS (Vite + TypeScript)
+ReactJS (Vite + TypeScript)\
 ASP.NET Core 
 
 ## Motivation
@@ -25,6 +25,7 @@ Allows users to download songs from YouTube, and listen for future working sessi
 ## Download Menu
 ![image](https://github.com/vathuglife/WorkPomodoro/assets/99245931/950eeca6-2dfe-4c64-a54a-74df3958e04a)
 ## All Songs/Playlist
+![image](https://github.com/vathuglife/WorkPomodoro/assets/99245931/1f5282c1-8d43-4052-a049-bad11c1ad841)
 
 ### User Menu 
 (under construction)
