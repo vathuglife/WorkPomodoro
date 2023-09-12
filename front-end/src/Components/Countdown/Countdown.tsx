@@ -28,9 +28,7 @@ export const Countdown = forwardRef(({handleTimesUp}:CountdownProps,ref:Ref<Coun
         if(isRunning==true) updateIsRunning(false);
         
     }
-    function resumeTimer(){        
-        let tempSecs = parentTimeInSecs;
-        tempSecs -=1;                
+    function resumeTimer(){                        
         updateIsRunning(true)
         console.log('Current parentTimeInSecs: ',parentTimeInSecs)
     }       

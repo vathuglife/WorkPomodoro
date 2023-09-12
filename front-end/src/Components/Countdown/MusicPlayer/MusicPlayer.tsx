@@ -1,10 +1,11 @@
 import './MusicPlayer.css'
-import { FaMusic } from 'react-icons/fa';
+import { FaMusic, FaPause, FaPlay } from 'react-icons/fa';
 import {useState} from 'react'
-import { FaFastForward } from 'react-icons/fa';
-import { FaFastBackward } from 'react-icons/fa';
+
 import {useEffect,useRef,forwardRef,useImperativeHandle,Ref} from 'react'
 import { Song } from '../../../Pages/Music/Interfaces/Interfaces';
+import { FaVolumeUp } from 'react-icons/fa';
+
 
 export interface MusicPlayerRefs{
     play:()=>void
@@ -17,8 +18,16 @@ export const MusicPlayer = forwardRef((_props,ref:Ref<MusicPlayerRefs>)=>{
     const [audioUrl,updateAudioUrl] = useState<string>('')
     const [currentSong,updateCurrentSong] = useState<number>(0)
     const [isLoaded,updateIsLoaded ] = useState<boolean>(false)
+    const [isPlayed,updateIsPlayed] = useState<boolean>(true)    
     const [playlist,updatePlaylist] = useState<Song[]>([])
-    
+    const [sliderDispMode,updateSliderDispMode] = useState('none')    
+    const [volume,updateVolume] = useState<number>(0.5)
+    const sliderContainerStyle:{[key:string]:React.CSSProperties} = {
+        container:{
+            display:sliderDispMode
+        }
+    }
+    /*
     /*
         Creates a new instance of HtmlAudioElement, and 
         PERSIST IT (prevent it from changing) on every re-render. 
@@ -58,6 +67,18 @@ triggering the initSong() function to run once again.*/
     /*In this case, a Promise does the following:
     - Guarantees that the function right after it (playSong) will run.
     - Guarantees that the functions run SEQUENTIALLY.  */
+    /* Randomize array in-place using Durstenfeld shuffle algorithm */
+    function shuffleArray(array:Song[]) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
+    
+    
     const loadSongFromDb = () => {
         let dbName = 'workpomodoro'
         let songsObjStore = 'songs'       
@@ -83,7 +104,7 @@ triggering the initSong() function to run once again.*/
             */
             let songRequest = store.getAll()
             songRequest.onsuccess = ()=>{                                                            
-                let result = songRequest.result      
+                let result = shuffleArray(songRequest.result)               
                 updatePlaylist(prevArray=>{
                     const newArray = [...prevArray]
                     result.forEach((song)=>{
@@ -138,27 +159,83 @@ triggering the initSong() function to run once again.*/
             playerRef.current!.pause()
         }
     }
+
+    const handlePlayPause = ()=>{
+        if(isPlayed) {
+            pause()
+            updateIsPlayed(false)
+        }
+        else {
+            play()
+            updateIsPlayed(true)
+        }
+        
+    }
     const handleNextSong = ()=>{
         
         if (currentSong < playlist.length - 1) {
             console.log('next song plz!')
             updateCurrentSong(currentSong + 1);
+            if(playerRef.current?.volume!==undefined)
+                playerRef.current.volume = volume
         } else {
             // If the playlist is finished, stop playback
             console.log('not next song yet blyat')
             playerRef.current!.pause()
         }
     }
-        
-    
-        
+      
+         
+    const showVolumeSlider = ()=>{
+        updateSliderDispMode('flex')
+    }
+    const hideVolumeSlider = () =>{
+        updateSliderDispMode('none')
+    }
+    const handleVolumeChange = (event:any)=>{
+        if(playerRef.current?.volume!==undefined){
+            let value = event.target.value
+            playerRef.current.volume = value
+            updateVolume(value)
+        }
+         
+    }
     
     return (
         <div id='current-song-border'>    
             <div id='fa-music'><FaMusic size="30"/></div>
             <div id='song-title'>{nowPlaying}</div>
-            <div id='prev-song'><FaFastBackward size='28'/></div>
-            <div id='next-song'><FaFastForward size='28'/></div>            
+            
+            
+            <div id='controls-container'>
+                <div className='controls-item' 
+                    id='play-pause-btn' onClick={handlePlayPause}>
+                    {
+                        isPlayed
+                        ?<FaPause size='28'/>
+                        :<FaPlay size='28'/>
+                    }
+                </div>
+                                
+                    <div className='controls-item'
+                        id='volume-icon'                        
+                        onMouseEnter={showVolumeSlider}
+                        onMouseLeave={hideVolumeSlider}>                            
+                        <FaVolumeUp size='28'/>            
+                        <div id='volume-slider-container'                            
+                            style={sliderContainerStyle.container}>                        
+                            <input id='volume-slider'
+                                    aria-orientation='vertical' 
+                                    type='range'
+                                    onChange={handleVolumeChange}
+                                    step={0.1} min={0} max={1}
+                                    value={volume}
+                            />
+                                
+                        </div>                        
+                </div>                
+            </div>
+            
         </div>
     );
 }

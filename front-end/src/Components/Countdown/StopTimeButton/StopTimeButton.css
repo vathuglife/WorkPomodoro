@@ -5,6 +5,7 @@
     width:60px;
     height:60px;
     border-radius:50%;
+    cursor:default;
     transition: transform 0.5s, opacity 0.5s; /*animation when the mouse is NOT HOVERED.*/
 }
 #fa-stop-btn{

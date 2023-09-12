@@ -1,6 +1,7 @@
 ﻿using MediaToolkit;
 using MediaToolkit.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
 using VideoLibrary;
 using WorkPomodoro_API.MusicAPI.DTO;
@@ -31,11 +32,38 @@ namespace WorkPomodoro_API.Utilities
             await ctx.Response.Body.FlushAsync();
         }
 
-        
+
+        private static string RunLinuxCommand(string command, string args)
+        {
+            var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = command,
+                    Arguments = args,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                }
+            };
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
+            process.WaitForExit();
+
+            if (string.IsNullOrEmpty(error)) { return output; }
+            else { return error; }
+        }
 
         public static async Task<string> GetMP3(string VideoURL)
         {
-            var source = Path.Join(Directory.GetCurrentDirectory(), "/temp");
+            string source = Path.Combine(Directory.GetCurrentDirectory(),"tempVid");
+            if (!Directory.Exists(source))
+            {
+                Directory.CreateDirectory(source);
+            }
+
             var youtube = YouTube.Default;
             var vid = youtube.GetVideo(VideoURL);
             var vidName = vid.FullName;
@@ -72,23 +100,28 @@ namespace WorkPomodoro_API.Utilities
             }
             msg = ("Conversion in Progress...");
             string musicPath = Path.Combine(source, $"{MP3Name}");
-            string videoPath = Path.Combine(source, vid.FullName);
-            var inputFile = new MediaFile { Filename =  videoPath};
-            var outputFile = new MediaFile { Filename = musicPath };
             
-            using (var engine = new Engine())
-            {
-                engine.GetMetaData(inputFile);
-                engine.Convert(inputFile, outputFile);
-            }
+            string videoPath = Path.Combine(source, vid.FullName);
+            string command = "ffmpeg";
+            string args= $"-i \"{videoPath}\" {musicPath}";
+            string conversionRes = RunLinuxCommand(command,args);
+            //var inputFile = new MediaFile { Filename =  videoPath};
+            //var outputFile = new MediaFile { Filename = musicPath };
+            
+            //using (var engine = new Engine())
+            //{
+            //    engine.GetMetaData(inputFile);
+            //    engine.Convert(inputFile, outputFile);
+            //}
 
             msg = ("Saving to your Browser...");
-            
+
             /*The byte array MUST BE CONVERTED TO Base64 String, so that it could work with JSON response,
              and be DECODED back to mp3 later on by the front-end.*/
+            
             string mp3Data = Convert.ToBase64String(File.ReadAllBytes(musicPath));
             File.Delete(videoPath);
-            return mp3Data;
+            return mp3Data;            
 
         }
 

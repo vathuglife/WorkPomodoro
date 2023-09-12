@@ -11,18 +11,15 @@ import { EachTask } from './EachTask/EachTask';
 
 
 export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{       
-    const [taskList,updateTaskList] = useState<Task[]>([]);
-    const [incompletedTasks,updateIncompletedTasks] = useState<Task[]>([]);
-    const [completedTasks,updateCompletedTasks] = useState<Task[]>([]);
-    const [filterList,_updateFilterList] = useState([{id:0,option:'All',mode:2},
-                                                    {id:1,option:'Pending',mode:0},
-                                                    {id:2,option:"Completed",mode:1}]); 
+    const [taskList,updateTaskList] = useState<Task[]>([]);    
+    const [filterList,_updateFilterList] = useState([{name:'All',value:2},
+                                                    {name:'Pending',value:0},{name:'Completed',value:1}]); 
                                                     //highlights the selected view mode.
-    const [activeOption, updateActiveOption] = useState({ id: 1, option: 'All', mode: 2 });
+    const [activeOption, updateActiveOption] = useState({ name: 'All', value: 2 });
     const [taskInput,updateTaskInput] = useState("");
     const [viewMode,updateViewMode] = useState(0);
     const [isSaveBtn,updateIsSaveBtn] = useState(false);
-    
+    const [topTask,updateTopTask] = useState<string>('')
     const dataUrl = "https://localhost:7263/workpomodoro/user/tasks"
     const TOKEN = localStorage.getItem('user-token');
     const config = {
@@ -33,17 +30,10 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
     }
   
     useEffect(()=>{
-        getData()  
-        
+        getData()
+        getTopTask()
     },[])
-    
-    
-    useEffect(()=>{
-        if(taskList.length!==0)      {
-            filterData()            
-        }
-    },[taskList]) /*if the task list changes (data is loaded into the list 
-                    itself, then runs the filter data function.)*/
+        
     
     useImperativeHandle(ref,()=>(
         {getTopTask}
@@ -55,26 +45,18 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
             .then((response:AxiosResponse)=>{                                
                 updateTaskList(()=>{return [...response.data]}) //return keyword forces 
                                                             //React to update the state ASAP.                                
-                console.log(taskList)
+                
+                
             })
     }
     
-    const filterData = ()=>{
-        let incompletedTasks:Task[] = [] 
-        let completedTasks:Task[] = []
-        taskList.map((eachTask)=>{
-            if(eachTask.type===0) incompletedTasks.push(eachTask)
-            else completedTasks.push(eachTask)
-        })
-        updateIncompletedTasks([...incompletedTasks])
-        updateCompletedTasks([...completedTasks])
-    }
-
+    
+       
     const saveData = ()=>{
         console.log()
         axios.post(dataUrl,taskList,config)
-            .then((response:AxiosResponse)=>{                                                
-                alert(response.data)
+            .then(()=>{                                                
+                //
                 updateIsSaveBtn(false)
             })
     }
@@ -90,6 +72,7 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
             console.log('top task: '+currentTask.name)
             if(currentTask.type===0){                
                 topTask = currentTask.name
+                updateTopTask(topTask)
             }
             break;
         }        
@@ -108,8 +91,7 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
             //let currentId = taskList.length 
             updateTaskInput("");
             updateViewMode(0);
-            updateIsSaveBtn(true)
-            updateActiveOption({ id: 0, option: 'All', mode: 0 })
+            updateIsSaveBtn(true)            
             console.log(enteredKeys)
             let newTask = {name:enteredKeys,type:0}
             tempTaskList.push(newTask)        
@@ -139,7 +121,7 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
         //Copies everything in the TaskList array to the prevTaskList object.
         //The three dots are called the spread operator (copies all items in an 
         //existing list to another new one.)
-        let tempTaskList =  [...incompletedTasks]
+        let tempTaskList =  [...taskList]
         
         /*Step 1: Temporarily remove the dragged item (the one user clicks and hold on)
         then saves it in the dragged variable.*/
@@ -159,21 +141,22 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
         draggedItem.current = null;
         draggedOverItem.current = null;
         updateIsSaveBtn(true);
-        updateIncompletedTasks(tempTaskList);
+        getTopTask()
+        updateTaskList(tempTaskList)
     }
     
     const deleteAllTasks = ()=>{        
         let deleteAll = confirm("Do you really want to delete all tasks?")
         if (deleteAll==true){
-            updateTaskList([])
+            updateTaskList([])         
             updateIsSaveBtn(true)
         }                                            
     }
 
     const deleteTaskById = (taskId:number)=>{
-        let tempList = [...incompletedTasks]
+        let tempList = [...taskList]
         tempList.splice(taskId,1)
-        updateIncompletedTasks(tempList)
+        updateTaskList(tempList)
         updateIsSaveBtn(true)
     }
     
@@ -191,15 +174,15 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
 
                 <div className="controls">                
                     <ul className="filters">
-                        {filterList.map((option)=>{
+                        {filterList.map((option,index)=>{
 
-                            return(<li key={option.id}
+                            return(<li key={index}
                                     onClick={()=>{
-                                        updateViewMode(option.mode)
+                                        updateViewMode(option.value)
                                         updateActiveOption(option) //highlights the currently active option (e.g. All, Completed, In Progress)
                                     }}
-                                    className={`option ${activeOption.id == option.id && "active"}`}> 
-                                    {option.option}                                                      
+                                    className={`option ${activeOption.value == option.value && "active"}`}> 
+                                    {option.name}                                                      
                                 </li>);
                         })                        
                         }                    
@@ -221,63 +204,49 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
                     </div>
                                    
                 </div>
-                {(()=>{
-                    if(viewMode===0){
-                        return(
-                            <ul className="task-box">
-                                {incompletedTasks.map((task,index)=>{
-                                    return (
-                                        <li key={index} className="tasklist-item" draggable
-                                            onDragStart={()=>{draggedItem.current = index} }
-                                            onDragEnter={()=>{draggedOverItem.current = index}} 
-                                            onDragEnd={reupdateTaskList} 
-                                            
-                                            onDragOver={(e)=>{e.preventDefault()}}> 
-                                             <EachTask updateTaskStatus={updateTaskStatus}
-                                                        deleteTask={deleteTaskById}
-                                                        index={index}
-                                                        eachTask={task}
-                                                        isPendingView={false} />
-                                        </li>
-                                        )
-                                })}
-                            </ul>            
+             
+             
+                <ul className="task-box">
+                    {taskList.map((task,index)=>{
+                        console.log(`current task and type: ${task.name} ${task.type}`)
+                        if(task.type==0 && viewMode===0) {return ( //incomplete tasks
+                            <li key={index} className="tasklist-item" draggable
+                                onDragStart={()=>{draggedItem.current = index} }
+                                onDragEnter={()=>{draggedOverItem.current = index}} 
+                                onDragEnd={reupdateTaskList}                                 
+                                onDragOver={(e)=>{e.preventDefault()}}> 
+                                    <EachTask updateTaskStatus={updateTaskStatus}
+                                            deleteTask={deleteTaskById}
+                                            index={index}
+                                            isTopTask={task.name===topTask ? true:false}
+                                            eachTask={task}
+                                            isPendingView={true} />
+                            </li>
+                        )}
+                        else if(task.type===1 && viewMode===1) {return ( //completed tasks
+                            <li key={index} className="tasklist-item"> 
+                                    <EachTask updateTaskStatus={updateTaskStatus}
+                                            deleteTask={deleteTaskById}
+                                            index={index}
+                                            isTopTask={true}
+                                            eachTask={task}
+                                            isPendingView={false} />
+                            </li>
+                            )
+                        }
+                        else if(viewMode===2 && (task.type!=0 || 1)) return(
+                            <li key={index} className="tasklist-item"> 
+                                    <EachTask updateTaskStatus={updateTaskStatus}
+                                            deleteTask={deleteTaskById}
+                                            index={index}
+                                            eachTask={task}
+                                            isTopTask={false}
+                                            isPendingView={false} />
+                            </li>
                         )
-                    }else if(viewMode===1){
-                        return(
-                            <ul className="task-box">
-                                {completedTasks.map((task,index)=>{
-                                    return (
-                                        <li key={index} className="tasklist-item"> 
-                                             <EachTask updateTaskStatus={updateTaskStatus}
-                                                        deleteTask={deleteTaskById}
-                                                        index={index}
-                                                        eachTask={task}
-                                                        isPendingView={true} />
-                                        </li>
-                                        )
-                                })}
-                            </ul>            
-                        )
-                    }
-                    else{
-                        return(
-                            <ul className="task-box">
-                                {taskList.map((task,index)=>{
-                                    return (
-                                        <li key={index} className="tasklist-item" > 
-                                             <EachTask updateTaskStatus={updateTaskStatus}
-                                                        deleteTask={deleteTaskById}
-                                                        index={index}
-                                                        eachTask={task}
-                                                        isPendingView={true} />
-                                        </li>
-                                        )
-                                })}
-                            </ul>            
-                        )
-                    }
-                })()}
+                    })}
+                </ul>            
+
                 
             </div>          
     );

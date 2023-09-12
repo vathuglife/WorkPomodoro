@@ -1,0 +1,28 @@
+E:\app\build\appsettings.Development.json
+E:\app\build\appsettings.json
+E:\app\build\WorkPomodoro_API.exe
+E:\app\build\WorkPomodoro_API.deps.json
+E:\app\build\WorkPomodoro_API.runtimeconfig.json
+E:\app\build\WorkPomodoro_API.dll
+E:\app\build\WorkPomodoro_API.pdb
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.csproj.AssemblyReference.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.GeneratedMSBuildEditorConfig.editorconfig
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.AssemblyInfoInputs.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.AssemblyInfo.cs
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.csproj.CoreCompileInputs.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.MvcApplicationPartsAssemblyInfo.cs
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.MvcApplicationPartsAssemblyInfo.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\staticwebassets\msbuild.WorkPomodoro_API.Microsoft.AspNetCore.StaticWebAssets.props
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\staticwebassets\msbuild.build.WorkPomodoro_API.props
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\staticwebassets\msbuild.buildMultiTargeting.WorkPomodoro_API.props
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\staticwebassets\msbuild.buildTransitive.WorkPomodoro_API.props
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\staticwebassets.pack.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\staticwebassets.build.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\staticwebassets.development.json
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\scopedcss\bundle\WorkPomodoro_API.styles.css
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.csproj.CopyComplete
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\refint\WorkPomodoro_API.dll
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.pdb
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\WorkPomodoro_API.genruntimeconfig.cache
+E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end\WorkPomodoro_API\obj\Release\net6.0\ref\WorkPomodoro_API.dll

@@ -9,12 +9,15 @@ export interface EachTaskProps{
     updateTaskStatus:(event:any,taskId:number)=>void;
     deleteTask:(taskId:number)=>void
     index:number;
-    eachTask:Task;
+    isTopTask:boolean;
+    eachTask:Task;    
     isPendingView:boolean; //only highlights the 1st task as yellow when the Pending mode is selected.
 }
 export const EachTask = ({updateTaskStatus,
                             deleteTask,index,
-                            eachTask,isPendingView}:EachTaskProps)=>{
+                            eachTask,
+                            isTopTask,
+                            isPendingView}:EachTaskProps)=>{
     const [statusColor,updateStatusColor] = useState('red')
     const [containerColor,updateContainerColor] = useState('white')        
     const statusStyle:{[key:string]:React.CSSProperties} = {
@@ -33,7 +36,8 @@ export const EachTask = ({updateTaskStatus,
         if(eachTask.type===1) {  //for completed tasks      
             updateStatusColor('green')                    
         }
-        else if(index===0 && !isPendingView) {//for incomplete ones      
+        if(isTopTask && isPendingView) {//for incomplete ones      
+            console.log(`${isTopTask} ${isPendingView}`)
             updateContainerColor('#FFC300')            
             
         }    
@@ -49,11 +53,14 @@ export const EachTask = ({updateTaskStatus,
         Step 3: ahihi is chosen, and as nothing updates statusColor (green->red),
                 the status color is stuck at Green.
         */
-        return(()=>{updateStatusColor('red')}) 
+        return(()=>{
+            updateContainerColor('white')
+            updateStatusColor('red')
+        }) 
                                                 
     })
     const handleCheckbox = (event:any,index:number)=>{
-        if(!isPendingView) //only allows user to change the task 
+        if(isPendingView) //only allows user to change the task 
                           //from red to green in Pending screen.
             updateTaskStatus(event,index)
     }

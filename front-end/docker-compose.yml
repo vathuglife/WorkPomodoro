@@ -1,0 +1,17 @@
+#This file will guide Docker how to create a 
+# Docker Container (different from Docker Image.)
+#A container is a RUNNING Image. An Image is the one on the Disk (NOT RUNNING.)
+
+version: '3'
+services: 
+    wp_frontend:    
+        image: ${DOCKER_REGISTRY-}wp_frontend:latest
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        container_name: wp_frontend
+        ports:
+            - "5173:5173"        
+        volumes: 
+            - ./:/wp_frontend
+            - /wp_frontend/node_modules

@@ -3,8 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {AxiosResponse,AxiosError } from 'axios'
 import {useState} from 'react'
 import axios from 'axios'
-export default function LoginRegisterForm(){
-	let [fullName,updateFullName] = useState("");
+export default function LoginRegisterForm(){	
 	let [username,updateUsername] = useState("");
 	let [password,updatePassword] = useState("");
 	
@@ -22,8 +21,7 @@ export default function LoginRegisterForm(){
 		}			
 		), {headers: { "Content-Type": "application/json" },
         withCredentials: true})
-		.then((response:AxiosResponse)=>{
-			let route = ''
+		.then((response:AxiosResponse)=>{			
 			if(response.status === 200){			
 				localStorage.setItem("user-token",response.data.token);
 			// 	route = '/countdown'

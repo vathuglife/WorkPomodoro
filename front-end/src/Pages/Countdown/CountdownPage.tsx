@@ -1,6 +1,5 @@
 import {Countdown} from "../../Components/Countdown/Countdown"
 import {CountdownRefs} from '../../Components/Countdown/CountdownPageRefs'
-import {useState} from 'react'
 import './CountdownPage.css'
 import {useSpring,animated} from 'react-spring'
 import {useEffect} from 'react'

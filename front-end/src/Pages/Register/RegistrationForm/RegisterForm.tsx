@@ -2,7 +2,7 @@ import './RegisterForm.css'
 import { useNavigate } from 'react-router-dom'
 import {useState} from 'react'
 import axios from "axios"
-import { AxiosResponse, AxiosError } from 'axios'
+import { AxiosError } from 'axios'
 export default function RegisterForm(){
     let navigate = useNavigate();
 	let [fullName,updateFullName] = useState("");
@@ -12,14 +12,14 @@ export default function RegisterForm(){
 	
 	const handleSignup = ()=>{
 								
-		let response = axios.post(REGISTER_URL,JSON.stringify({
+		axios.post(REGISTER_URL,JSON.stringify({
 			"name": fullName,
 			"username": username,
 			"password": password
 		}			
 		), {headers: { "Content-Type": "application/json" },
         withCredentials: true})
-		.then((response: AxiosResponse) => {		
+		.then(() => {		
 			
 			let confirmed = confirm("Successfully signed up!");
 			if (confirmed){

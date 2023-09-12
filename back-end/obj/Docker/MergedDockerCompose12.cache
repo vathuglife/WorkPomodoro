@@ -1,0 +1,60 @@
+name: dockercompose5764361551411841176
+services:
+  workpomodoro_api:
+    build:
+      context: E:\My Coding Shits\UI-UX design\WorkPomodoro\WorkPomodoro\back-end
+      dockerfile: WorkPomodoro_API/Dockerfile
+    container_name: workpomodoro_api
+    depends_on:
+      workpomodoro_db:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: workpomodoroapi
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 80
+      published: "7262"
+      protocol: tcp
+    - mode: ingress
+      target: 443
+      protocol: tcp
+    - mode: ingress
+      target: 443
+      published: "7263"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\VietAnhOdyssey\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\VietAnhOdyssey\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+  workpomodoro_db:
+    container_name: workpomodoro_db
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "1234567890"
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 1433
+      published: "8002"
+      protocol: tcp
+networks:
+  default:
+    name: dockercompose5764361551411841176_default

@@ -1,5 +1,5 @@
 import './NavBar.css'
-import {FaBars, FaClock,FaHamburger,FaMusic, FaTasks, FaUser} from 'react-icons/fa'
+import {FaBars, FaClock,FaMusic, FaTasks, FaUser} from 'react-icons/fa'
 import {To, useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -14,8 +14,7 @@ interface SideBarIconProps {
 
 export default function NavBar (){
    
-  let navigate = useNavigate();
-  let getUserInfoUrl = ""
+  let navigate = useNavigate();  
   useEffect(()=>{
 
   })

@@ -4,12 +4,13 @@ import {useRef,useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CountdownRefs } from '../../Components/Countdown/CountdownPageRefs'
 import TimesUpModal from '../../Components/Countdown/TimesUpModal/TimesUpModal'
-
+import TimesUpChime from '../../../resources/audio/timesUp.mp3'
 
 export default function BreaktimePage(){
-    const [isBreakTimeSelected,updateIsBreakTimeSelected] = useState<boolean>(false)
+    const [isBreakTimeSelected,updateIsBreakTimeSelected] = useState<boolean>(false)    
     const [duration,updateDuration] = useState<number>(0);
     const cdRef = useRef<CountdownRefs>(null)
+    const audioPlayer = new Audio(TimesUpChime)
     const navigator = useNavigate()
     const springProps = useSpring({
         from:{opacity:0},
@@ -19,19 +20,23 @@ export default function BreaktimePage(){
     })    
     
     useEffect(()=>{
+        
         if(isBreakTimeSelected) {
             cdRef.current?.resetTimer(duration)    
             cdRef.current?.resumeTimer()
-        }            
+        }else{
+            audioPlayer.play()
+        }
     },[isBreakTimeSelected])
     
     const handleBreakSession = (duration:number)=>{        
         updateIsBreakTimeSelected(true);
         updateDuration(duration);
+        
     }
 
     const handleTimesUp = ()=>{ //navigates back to the countdown page after the break time ends.
-        console.log('break time is over!')
+        alert('Time\'s up! It\'s time to return to work!')        
         navigator('/countdown')
     }
 
@@ -50,6 +55,8 @@ export default function BreaktimePage(){
                         </div>                             
                     </animated.div>        
                 )
+                
+                
             })()} 
         
         </div>

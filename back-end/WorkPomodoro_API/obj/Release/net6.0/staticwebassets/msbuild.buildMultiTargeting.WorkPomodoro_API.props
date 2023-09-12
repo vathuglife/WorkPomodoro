@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\WorkPomodoro_API.props" />
+</Project>

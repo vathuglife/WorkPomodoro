@@ -76,15 +76,15 @@ builder.Services.AddSwaggerGen(
             });
     });
 
-builder.Services.AddDbContext<WorkPomodoroContext>(
+
+var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+builder.Services.AddDbContext<WorkPomodoroContext>(    
     options => {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("WorkPomodoroDB"));
+        options.UseSqlServer(connString);
         options.EnableSensitiveDataLogging();   
     });
 builder.Services.AddScoped<AccountUtils>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-
-
 
 
 
