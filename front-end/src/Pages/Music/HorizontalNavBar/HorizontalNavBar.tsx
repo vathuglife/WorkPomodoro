@@ -1,12 +1,22 @@
 import './HorizontalNavBar.css'
 import {useState} from 'react'
-
+import { faPlay,faList,faDownload } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export interface HorizontalNavBarProps{
     updateSubComponent:(component:number)=>void;
 }
+interface EachLink{
+    icon:IconDefinition;
+    text:String;
+}
 
 export default function HorizontalNavBar({updateSubComponent}:HorizontalNavBarProps){
-    const links = ['Playlist','All Songs','Download']    
+    const links:EachLink[] = [
+        {icon:faPlay,text:'Playlist'},
+        {icon:faList,text:'All Songs'},
+        {icon:faDownload,text:'Download'}
+    ]    
     const [selected,updateSelected] = useState(0);
     /*Selection workflow:
     1. User clicks on one of the hyperlinks in links array..
@@ -28,7 +38,8 @@ export default function HorizontalNavBar({updateSubComponent}:HorizontalNavBarPr
                             console.log('Current sub component: '+index)
                         }}                   
                         className={`navbar-item ${selected == index && "active"}`}>
-                        {eachLink}
+                        <div className='fa-icon'><FontAwesomeIcon icon={eachLink.icon}/></div>
+                        <div className='hor-navbar-txt'>{eachLink.text}</div>
                     </li>
                 )
             })}            

@@ -1,0 +1,38 @@
+#settings-card-container{
+    width:80%;    
+    height:100px;   
+    border-radius:25px;
+    border-color:#000034;
+    border-width:1px;
+    position:relative; 
+    left:12%;
+    cursor:default;
+    margin-bottom:2%;
+}
+
+#settings-card-container:active{
+    background-color:#000034;
+    color:white;
+}
+
+.settings-txt{
+    position:absolute;
+    width:80%;
+    left:12%;
+    top:12%;
+    display:inline-block;
+}
+.settings-title{
+    font-size:25px;
+    font-weight:bold;
+    
+}
+.settings-desc{
+    font-size:22px;
+}
+.settings-icon{
+    display:inline-block;
+    position:absolute;
+    left:3%;
+    top:22%; 
+}

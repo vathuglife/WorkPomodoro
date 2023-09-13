@@ -1,18 +1,19 @@
-#logout-btn-container{
-    width:9rem;
+#edit-profile-btn-container{
+    width:12.8rem;
     height:3rem;
     border-radius: 25px;
-    background-color:#b02c2c;
+    background-color:#010194;
     color:white;
     justify-content:center;
-    padding-left:1px;
+    padding:10px;
     text-align:center;
     cursor:default;
     font-weight:bold;
 }
-#logout-btn-container:active{
-    background-color:#500000
+#edit-profile-btn-container:active{
+    background-color:#000034
 }
+
 .inline{
     display:inline-block;    
 }

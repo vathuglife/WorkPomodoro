@@ -38,7 +38,7 @@ export default function NavBar (){
     </div>
     );
   }
-  const UserNameIcon = ()=>{
+  const UserIcon = ()=>{
     const handleClick = ()=>{
       navigate("/profile")
     }
@@ -70,7 +70,7 @@ export default function NavBar (){
       <SideBarIcon icon={<FaClock size="28"/>} text='Countdown' url="/countdown"/>
       <SideBarIcon icon={<FaTasks size="28"/>} text='Tasks' url="/tasks"/>                
       <SideBarIcon icon={<FaMusic size="28"/>} text='Music' url="/music"/>                      
-      <UserNameIcon/>
+      <UserIcon/>
     </div>
             
     </div>

@@ -1,0 +1,48 @@
+#profile-section-container{
+    width:80%;    
+    height:8%;
+    position:relative;
+    left:12%;
+}
+.inline-disp{    
+    display:inline-block;
+}
+.avatar{
+    border-radius:50%;
+    padding-left:42px;
+    padding-top:42px;
+    border-width:2px;          
+    width:120px;
+    height:120px;  
+    margin-right:2rem;
+}
+.desc{
+    width:8rem;
+    height:3rem;
+}
+.welcomeTxt{
+    position:absolute;
+    top:5%;
+    font-size:30px;   
+}
+.usernameTxt{
+    font-size:30px;
+    position:absolute;
+    top:50%;
+    color:#00034;
+    font-weight:bold;
+}
+.user-controls{
+    position:absolute;
+    height:auto;
+    right:0%;
+    top:10%;
+    justify-content:right;
+}
+.user-control{
+    margin-top:2px;    
+}
+.edit-profile-btn{
+    position:absolute;
+    right:0px;
+}

@@ -1,3 +1,4 @@
+import { FaSignOutAlt } from 'react-icons/fa'
 import './Logout.css'
 export const Logout = ()=>{        
     const handleLogout = ()=>{
@@ -9,6 +10,9 @@ export const Logout = ()=>{
         }
     }
     return(
-        <div id='btn-container' onClick={handleLogout}>Log Out </div>
+        <div id='logout-btn-container' onClick={handleLogout}>
+            <div className='inline icon-container'><FaSignOutAlt size='28'/></div>
+            <div className='inline label-container'>Log Out </div>            
+        </div>
     )
 }

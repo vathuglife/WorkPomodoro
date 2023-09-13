@@ -1,9 +1,35 @@
-.main-container{
+#profile-page-container{
     width:100%;
-    height:100%;
+    max-height:480px;
+    position:relative;    
 }
 #logout-btn-pos{
     margin:0 auto;
     width:100px;
     height:100px;
 }
+#settings-label{
+    position:relative;
+    margin-bottom:2%;
+    left:12.5%;
+    font-size:30px;
+    font-weight:bold;
+}
+.settings-card-group{
+    position:relative;
+    margin-top:5%;
+    height:60%;    
+    
+}
+
+  /* Track */
+#profile-page-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+#root::-webkit-scrollbar-thumb {
+    background: #000034;
+    border-radius: 25px;
+}
+
