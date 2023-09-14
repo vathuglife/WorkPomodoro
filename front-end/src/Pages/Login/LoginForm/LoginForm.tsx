@@ -14,8 +14,8 @@ export default function LoginRegisterForm(){
 		navigate(path);
 
 	}
-	const signin = async()=>{
-		await axios.post(REGISTER_URL,JSON.stringify({			
+	const signin =()=>{
+		axios.post(REGISTER_URL,JSON.stringify({			
 			"username": username,
 			"password": password
 		}			

@@ -40,13 +40,10 @@ namespace WorkPomodoro_API.AccountAPI.Controllers
             /*Extracts the token from the Request header, then decipher it into a list of Claims
              The remove keyword basically removes the "Bearer" suffix.*/
 
-            string ?rawToken = Request.Headers[HeaderNames.Authorization].ToString().Remove(0,7);
-            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            JwtSecurityToken securityToken = (JwtSecurityToken)tokenHandler.ReadToken(rawToken);
-            IEnumerable<Claim> claims = securityToken.Claims;
+            string ?rawToken = Request.Headers[HeaderNames.Authorization].ToString().Remove(0,7);            
 
-            Token tokenCommand = new Token();
-            tokenCommand.claims = claims;
+            ValidateTokenRequest tokenCommand = new ValidateTokenRequest();
+            tokenCommand.token = rawToken;
             bool isValid = await _mediator.Send(tokenCommand);
             if (!isValid) return BadRequest("Login credentials might be incorrect.");
             return Ok();

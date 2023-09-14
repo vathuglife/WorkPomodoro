@@ -77,7 +77,8 @@ builder.Services.AddSwaggerGen(
     });
 
 
-var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+//var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+var connString = builder.Configuration.GetConnectionString("WorkPomodoroDB");
 builder.Services.AddDbContext<WorkPomodoroContext>(    
     options => {
         options.UseSqlServer(connString);

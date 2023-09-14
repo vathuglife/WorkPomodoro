@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
+using WorkPomodoro_API.AccountAPI.DTO;
 using WorkPomodoro_API.Entities;
 
 namespace WorkPomodoro_API.Utilities
@@ -59,10 +60,14 @@ namespace WorkPomodoro_API.Utilities
             JwtSecurityToken securityToken = (JwtSecurityToken)tokenHandler.ReadToken(jwtToken);
             IEnumerable<Claim> claims = securityToken.Claims;
             return claims;
+        }              
+        public string encryptPassword(string pwd)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(pwd); 
         }
-    
-   
-
-
+        public bool verifyPassword(string incomingPwd,string existingPwd)
+        {
+            return BCrypt.Net.BCrypt.Verify(incomingPwd,existingPwd);
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using WorkPomodoro_API.AccountAPI.DTO;
 using WorkPomodoro_API.Entities;
+using WorkPomodoro_API.Utilities;
 
 namespace WorkPomodoro_API.AccountAPI.Authentication.Login
 {
@@ -12,10 +13,12 @@ namespace WorkPomodoro_API.AccountAPI.Authentication.Login
     {
         private readonly WorkPomodoroContext _dbContext;
         protected readonly IConfiguration _configuration;
-        public LoginHandler(WorkPomodoroContext dbContext, IConfiguration configuration)
+        private readonly AccountUtils _accountUtils;
+        public LoginHandler(WorkPomodoroContext dbContext, IConfiguration configuration,AccountUtils accountUtils)
         {
             _dbContext = dbContext;
             _configuration = configuration;
+            _accountUtils = accountUtils;
         }
         public async Task<string> Handle(Login request, CancellationToken cancellationToken)
         {
@@ -29,7 +32,7 @@ namespace WorkPomodoro_API.AccountAPI.Authentication.Login
                                 .FirstOrDefault(acc => acc.Username == username)!;
 
                 
-                if (account == null || !BCrypt.Net.BCrypt.Verify(loginAccountDTO.Password, account.Password)) 
+                if (account == null || !_accountUtils.verifyPassword(loginAccountDTO.Password!, account.Password!)) 
                     return null!;
 
                 var claims = new[] {

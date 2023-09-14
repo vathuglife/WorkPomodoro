@@ -1,19 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './EditProfileForm.css'
 import { faX } from '@fortawesome/free-solid-svg-icons';
-import {useRef,useState} from 'react'
+import {useRef,useState,useEffect} from 'react'
 import { faQuestion,faUpload,faSave,faEye } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { UserResponseData } from '../Main/ProfilePage';
 
 
-interface EditProfileFormProps{
-    showForm:boolean; 
-    hideForm:()=>void;
-}
+
 interface InputFieldProps{
     label:string;
     inputType:string;
+    value:string;
+    updateValue:(value:string)=>void;
 }
-function InputField({label,inputType}:InputFieldProps){
+function InputField({label,inputType,value,updateValue}:InputFieldProps){
     const [isPassword,updateIsPassword] = useState(inputType);
     const showHidePassword = ()=>{
         if(isPassword==='password') updateIsPassword('text')
@@ -23,7 +25,9 @@ function InputField({label,inputType}:InputFieldProps){
         <div id='edit-profile-form-input-container'>
             <div className='edit-profile-form-input-label'>{label}</div>
             <div className='edit-profile-form-input-wrapper'>                
-                <input type={isPassword} className='edit-profile-form-input'/>
+                <input type={isPassword} className='edit-profile-form-input'
+                        value={value}
+                        onChange={(e)=>updateValue((e.target as HTMLInputElement).value)}/>
             </div>        
             {(()=>{
                 if(inputType==='password') return(
@@ -35,17 +39,48 @@ function InputField({label,inputType}:InputFieldProps){
         </div>
     )
 }
-function AvatarChanger(){
-    const imageUploaderRef = useRef<HTMLInputElement>(null);
-    const [image,updateImage] = useState<File>();
-    const handleImageChange = (e:React.ChangeEvent)=>{
-        let file = (e.target as HTMLInputElement).files![0]
-        console.log('Current image file: '+file)
-        updateImage(file)
-    }
 
+interface AvatarChangerProps{    
+    responseImage:string;
+    updateImgB64:(image:string)=>void;
+}
+
+function AvatarChanger({responseImage,updateImgB64}:AvatarChangerProps){    
+    const imageUploaderRef = useRef<HTMLInputElement>(null);
+    const [image,updateImage] = useState<string>();
+    
+    const handleImageChange = (e:React.ChangeEvent)=>{
+        let file = (e.target as HTMLInputElement).files![0]                
+        console.log('Preparing to convert file!')
+        blobToBase64(file).then((result:string)=>{
+            console.log(result)
+            updateImage(result) //Update the image INSIDE THE FORM.
+            updateImgB64(result) //Update the image OUTSIDE THE FORM (for calling the API)           
+        })
+
+    }
+    const blobToBase64 = (img:Blob)=>{
+        return new Promise<string> ((resolve,reject)=>{
+            let result = ''
+            let reader = new FileReader();
+            reader.readAsDataURL(img as Blob)
+            reader.onload = ()=>{
+                result = reader.result as string;
+                resolve(result)
+            }
+            reader.onerror = (error)=> {
+                reject(error);  
+            }
+        
+    })
+}
+    useEffect(()=>{
+        updateImage(responseImage)
+    },[])
+    
+    
     const handleImageSubmit = ()=>{
-        imageUploaderRef.current?.click();
+        imageUploaderRef.current?.click();       
     }
     return(
         <div id='avatar-changer-container'>
@@ -60,7 +95,7 @@ function AvatarChanger(){
                 )
                 else return(
                     <img id='avatar-circle-image' 
-                        src={URL.createObjectURL(image)}>
+                        src={image}>
                     </img>
                 )
     
@@ -77,11 +112,57 @@ function AvatarChanger(){
     )
 }
 
-export default function EditProfileForm({showForm,hideForm}:EditProfileFormProps){     
+interface EditProfileFormProps{
+    showForm:boolean; 
+    hideForm:()=>void;
+    responseData:UserResponseData;
+}
+
+
+export default function EditProfileForm({showForm,hideForm,responseData}:EditProfileFormProps){     
+    const API_URL = "https://localhost:7263/workpomodoro/update"        
+    const TOKEN = localStorage.getItem('user-token');
+    const [name,updateName] = useState<string>(null!)
+    const [username,updateUsername] = useState<string>(null!)
+    const [password,updatePassword] = useState<string>(null!)
+    const [image,updateImage] = useState<string>(null!)
+    const navigator = useNavigate()
+    useEffect(()=>{
+        updateName(responseData.name);
+        updateImage(responseData.image);        
+        updateUsername(responseData.username);
+    },[])
+
+    const config = {
+        headers:{
+            Authorization:'Bearer '+TOKEN
+        },        
+    }
+    let body = {
+        "name": name,
+        "username": username,
+        "password": password,
+        "image":image
+    }
+   
     
     const handleSaveData = ()=>{
-
+        axios.post(API_URL,body,config)
+            .then(
+                ()=>{
+                    alert("Successfully updated user details! Please log in again to apply the changes.")
+                    localStorage.removeItem("user-token")
+                    window.location.reload();
+                }
+            )
+            .catch(
+                (reason)=>{
+                    console.log(reason)
+                }
+            )            
     }
+
+   
     if(!showForm)
         return null
 
@@ -93,11 +174,11 @@ export default function EditProfileForm({showForm,hideForm}:EditProfileFormProps
                 <FontAwesomeIcon size='3x' icon={faX}/>
             </div>
             <div id='edit-profile-form'>
-                <AvatarChanger/>                    
+                <AvatarChanger responseImage={responseData.image} updateImgB64={updateImage}/>                    
                 <div id='edit-profile-form-all-input-container'>                                        
-                    <InputField label='Name' inputType='text'/>            
-                    <InputField label='Username' inputType='text'/>           
-                    <InputField label='Password' inputType='password'/>                    
+                    <InputField label='Name' inputType='text' value={name} updateValue={updateName}/>            
+                    <InputField label='Username' inputType='text' value={username} updateValue={updateUsername}/>           
+                    <InputField label='Password' inputType='password' value={password} updateValue={updatePassword}/>                    
                 </div>        
             </div>     
              <div id='save-btn' onClick={handleSaveData}>

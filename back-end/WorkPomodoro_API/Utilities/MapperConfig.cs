@@ -16,6 +16,7 @@ namespace WorkPomodoro_API.Utilities
                 //Configuring User and UserDTO
                 cfg.CreateMap<ReadAccountDTO, Account>();
                 cfg.CreateMap<CreateAccountDTO, Account>();
+                cfg.CreateMap<UpdateAccountDTO, Account>();                
                 cfg.CreateMap<Account, CreateAccountDTO>();
                 cfg.CreateMap<Account, ReadAccountDTO>();
                 cfg.CreateMap<GetSongDTO, SongDTO>();

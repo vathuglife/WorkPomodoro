@@ -2,8 +2,9 @@
 {
     public class ReadAccountDTO
     {
-        public string? Uid { get; set; }
+        public int Uid { get; set; }
         public string? Name { get; set; }
-        public string? Username { get; set; }
+        public string? Username { get; set; }        
+        public string? Image { get;set; }
     }
 }

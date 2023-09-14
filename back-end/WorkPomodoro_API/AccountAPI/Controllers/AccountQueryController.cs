@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using System.Security.Claims;
 
 using WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails;
@@ -30,15 +31,9 @@ namespace WorkPomodoro_API.AccountAPI.Controllers
 
             //Gets the userId from the token which was previously sent to React (Front-end)
             //A Claim includes 2 information: Type and Value. Type is basically the same as Key in dictionary.
-            string userId = User.FindFirst("UserId")!.Value;
-            if (userId == null)
-            {
-                return BadRequest("Can't retrieve the current user " +
-                    "data as he/she has not logged in yet.");
-            }
-
+            string ?token = Request.Headers[HeaderNames.Authorization].ToString().Remove(0, 7);         
             var command = new GetAccountDetailsQuery();
-            command.UID = userId; //Gets the Value from the Id Claim.
+            command.Token = token;
             var response = await _mediator.Send(command);
 
             if (response == null)

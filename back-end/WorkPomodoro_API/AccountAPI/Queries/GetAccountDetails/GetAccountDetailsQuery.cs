@@ -7,6 +7,6 @@ namespace WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails
     //as well as the from the Front-end (Id)
     public class GetAccountDetailsQuery : IRequest<ReadAccountDTO>
     {
-        public string? UID { get; set; }
+        public string? Token { get; set; }
     }
 }

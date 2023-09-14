@@ -2,7 +2,7 @@ import { FaEdit } from 'react-icons/fa'
 import './EditProfileBtn.css'
 
 interface EditProfileBtnProps{
-    showFormFunction:()=>void;
+    showFormFunction:()=>void;    
 }
 
 export default function EditProfileBtn({showFormFunction}:EditProfileBtnProps){    

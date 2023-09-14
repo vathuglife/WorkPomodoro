@@ -28,9 +28,8 @@ export default function AppRouter (){
 
     })
      
-    const authenticate = async ()=>{
-        
-        await axios.get(USER_INFO_URL, GET_CONFIG)
+    const authenticate = ()=>{        
+        axios.get(USER_INFO_URL, GET_CONFIG)
         .then((response: AxiosResponse)=>{            
             if(response.status===200){
                 updateAuthenStatus("authenticated");
