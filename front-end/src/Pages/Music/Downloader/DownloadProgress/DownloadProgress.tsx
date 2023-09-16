@@ -8,7 +8,7 @@ export default function DownloadProgress({progress}:DownloadProgressProps){
     const [pos,updatePos] = useState<string>('')
     useEffect(()=>{                
         updateProgress()    
-        
+        return(()=>{false})    
     })
     
     const getProgressInt = ():number=>{

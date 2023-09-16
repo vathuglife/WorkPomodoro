@@ -29,17 +29,18 @@ namespace WorkPomodoro_API.TaskAPI.Queries.GetTopTask
                                FirstOrDefault()!.Value);
 
                 if (userId == 0) { return null!; }
-
-                Entities.Task topTask = _dbContext.Tasks
-                    .Where(task => task.Uid == userId && task.Type==false)
-                    .OrderBy(task=>task.Tid)
-                    .FirstOrDefault()!;
-                TaskDTO result = _mapper.Map<TaskDTO>(topTask);
-                
-                return result;
-
+                return getTopTaskDTO(userId);
             });
 
+        }
+        private TaskDTO getTopTaskDTO(int userId)
+        {
+            Entities.Task topTask = _dbContext.Tasks
+                   .Where(task => task.Uid == userId && task.Type == false)
+                   .OrderBy(task => task.Tid)
+                   .FirstOrDefault()!;
+            TaskDTO result = _mapper.Map<TaskDTO>(topTask);
+            return result;
         }
     }
 }

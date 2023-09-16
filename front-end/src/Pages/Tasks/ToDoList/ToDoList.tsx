@@ -15,7 +15,7 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
     const [filterList,_updateFilterList] = useState([{name:'All',value:2},
                                                     {name:'Pending',value:0},{name:'Completed',value:1}]); 
                                                     //highlights the selected view mode.
-    const [activeOption, updateActiveOption] = useState({ name: 'All', value: 2 });
+    const [activeOption, updateActiveOption] = useState({ name: 'Pending', value: 0 });
     const [taskInput,updateTaskInput] = useState("");
     const [viewMode,updateViewMode] = useState(0);
     const [isSaveBtn,updateIsSaveBtn] = useState(false);

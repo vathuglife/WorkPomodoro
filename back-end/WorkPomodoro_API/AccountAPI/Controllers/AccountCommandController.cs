@@ -37,11 +37,11 @@ namespace WorkPomodoro_API.AccountAPI.Controllers
         [Authorize]
         public async Task<IActionResult> updateAccountDetails([FromBody] UpdateAccountDTO updateAccountDTO)
         {
-            string? rawToken = Request.Headers[HeaderNames.Authorization].ToString().Remove(0, 7);
-            
+            string? rawToken = Request.Headers[HeaderNames.Authorization].ToString().Remove(0, 7);            
             var command = new UpdateAccountCommand();
             command.UpdateAccountDTO = updateAccountDTO;
             command.token = rawToken;
+            
             bool response = await _mediator.Send(command);  
             if(response==false) { return BadRequest(); }
             return Ok();

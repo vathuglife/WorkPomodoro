@@ -12,55 +12,56 @@ namespace WorkPomodoro_API.TaskAPI.Commands
         private readonly AccountUtils _utils;
         private WorkPomodoroContext _dbContext;
         private Mapper _mapper;
-        public SaveTaskByUserCommandHandler(AccountUtils utils,WorkPomodoroContext WorkPomodoroContext) { 
+        public SaveTaskByUserCommandHandler(AccountUtils utils, WorkPomodoroContext WorkPomodoroContext)
+        {
             _utils = utils;
             _dbContext = WorkPomodoroContext;
             _mapper = MapperConfig.InitializeMapper();
-        }   
-        
-        
+        }
+
+
         public Task<bool> Handle(SaveTaskByUserCommand request, CancellationToken cancellationToken)
         {
             return System.Threading.Tasks.Task.Run(() =>
             {
                 string token = request.jwtToken!;
-                List<TaskDTO> taskDTOs = request.createTaskDTO!;                
+                List<TaskDTO> taskDTOs = request.createTaskDTO!;
                 int userId = Int32.Parse(_utils.getClaims(token).Where(eachClaim => eachClaim.Type == "UserId").
                                 FirstOrDefault()!.Value);
 
                 if (userId == 0) { return false; }
-                Account account = _dbContext.Accounts.FirstOrDefault(account => account.Uid == userId)!; 
-                if(account == null) { return false; }
+                Account account = _dbContext.Accounts.FirstOrDefault(account => account.Uid == userId)!;
+                if (account == null) { return false; }
 
 
 
-                clearOldTasks(account);                
+                clearOldTasks(account);
                 addNewTasks(account, taskDTOs);
-                               
-              
-                
+
+
+
                 return true;
 
             });
-            
-        }               
 
-        private void addNewTasks(Account account,List<TaskDTO> taskDTOs)
+        }
+
+        private void addNewTasks(Account account, List<TaskDTO> taskDTOs)
         {
             //Get the existing task list.
             List<Entities.Task> tempTaskList = new List<Entities.Task>();
-            
 
-            for (int index=0;index<taskDTOs.Count;index++)
+
+            for (int index = 0; index < taskDTOs.Count; index++)
             {
 
                 TaskDTO taskDTO = taskDTOs[index];
                 Entities.Task task = new Entities.Task();
-                task = _mapper.Map<Entities.Task>(taskDTO);                
-                
+                task = _mapper.Map<Entities.Task>(taskDTO);
+
                 task.Uid = account.Uid;
                 task.Account = account;
-                tempTaskList.Add(task);                
+                tempTaskList.Add(task);
             }
             account.Tasks = tempTaskList;
             _dbContext.SaveChanges();
@@ -69,12 +70,12 @@ namespace WorkPomodoro_API.TaskAPI.Commands
         private void clearOldTasks(Account account)
         {
             //Manually removes the existing tasks belong to an account in the Database, NOT the Account entity.
-            List<Entities.Task> oldTaskList = _dbContext.Tasks.Where(task=>task.Uid == account.Uid).ToList();    
-            foreach(Entities.Task task in oldTaskList)
+            List<Entities.Task> oldTaskList = _dbContext.Tasks.Where(task => task.Uid == account.Uid).ToList();
+            foreach (Entities.Task task in oldTaskList)
             {
                 _dbContext.Tasks.Remove(task);
             }
-            _dbContext.SaveChanges();   
+            _dbContext.SaveChanges();
 
         }
     }

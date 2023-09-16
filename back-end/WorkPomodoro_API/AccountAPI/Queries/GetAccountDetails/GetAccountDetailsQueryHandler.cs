@@ -31,14 +31,18 @@ namespace WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails
             {
                 return default!;
             }
+          
+            return returnAccountDTO(accEntity)!;
+
+        }
+        private ReadAccountDTO? returnAccountDTO(Account accEntity)
+        {
             ReadAccountDTO readAccountDTO = new ReadAccountDTO();
             readAccountDTO.Uid = accEntity.Uid;
-            readAccountDTO.Name = accEntity.Name; 
+            readAccountDTO.Name = accEntity.Name;
             readAccountDTO.Username = accEntity.Username;
-            readAccountDTO.Image = "data:image/png;base64,"+Convert.ToBase64String(accEntity.Image!);
-
-            return readAccountDTO;
-
+            readAccountDTO.Image = "data:image/png;base64," + Convert.ToBase64String(accEntity.Image!);
+            return readAccountDTO;  
         }
     }
 }

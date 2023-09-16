@@ -18,10 +18,6 @@ using WorkPomodoro_API.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-
-
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -45,6 +41,8 @@ builder.Services.AddAuthorization(auth => {
         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
         .RequireAuthenticatedUser().Build());
 });
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
@@ -77,8 +75,9 @@ builder.Services.AddSwaggerGen(
     });
 
 
-//var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-var connString = builder.Configuration.GetConnectionString("WorkPomodoroDB");
+
+var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+//var connString = builder.Configuration.GetConnectionString("WorkPomodoroDB");
 builder.Services.AddDbContext<WorkPomodoroContext>(    
     options => {
         options.UseSqlServer(connString);
@@ -86,9 +85,6 @@ builder.Services.AddDbContext<WorkPomodoroContext>(
     });
 builder.Services.AddScoped<AccountUtils>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-
-
-
 
 
 

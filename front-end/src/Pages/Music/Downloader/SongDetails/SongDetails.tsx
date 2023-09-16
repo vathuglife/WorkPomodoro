@@ -100,7 +100,7 @@ export const SongDetails = forwardRef(({isImageShown,videoUrl,opac}:SongDetailsP
             extractVideoDetails();
             console.log('current thumbnail URL: '+thumbnailURL)
         }
-        
+        return(()=>{false})    
         
     },[isImageShown])
     

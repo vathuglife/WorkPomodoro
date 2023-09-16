@@ -5,7 +5,7 @@ import './MusicPage.css'
 import HorizontalNavBar from './HorizontalNavBar/HorizontalNavBar'
 import YTDownloader from './Downloader/YTDownloader'
 
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import AllSongs from './AllSongs/AllSongs'
 import { useSpring ,animated} from 'react-spring'
 import Playlist from './Playlist/Playlist'
@@ -19,7 +19,11 @@ export default function MusicPage(){
     })       
     const changeComponent = (component:number)=>{
         updateCurrentComponent(component)
+    
     }
+    useEffect(()=>{
+        return(()=>{false})    
+    },[])
     return(                        
         <div className="main-container">
             <div className='nav-bar-pos'>

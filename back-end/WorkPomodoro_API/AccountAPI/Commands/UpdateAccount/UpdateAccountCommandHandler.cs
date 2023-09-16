@@ -29,19 +29,30 @@ namespace WorkPomodoro_API.AccountAPI.Commands.UpdateAccount
                 int uid = Int32.Parse(claims.Where(eachClaim => eachClaim.Type == "UserId").
                                 FirstOrDefault()!.Value);
 
+                return updateExistingAccountDetails(dto, uid); 
+            });            
+        }
+        private bool updateExistingAccountDetails(UpdateAccountDTO dto,int uid)
+        {
+            try
+            {
                 Account existingAcc = workPomodoroContext?.Accounts.
                                         Where(acc => acc.Uid.Equals(uid))
                                         .FirstOrDefault()!;
-                
+
                 existingAcc.Username = dto.Username;
-                existingAcc.Password = accountUtils.encryptPassword(dto.Password!);
+                existingAcc.Password = accountUtils!.encryptPassword(dto.Password!);
                 existingAcc.Name = dto.Name;
                 string rawImg = Regex.Replace(dto.Image!, @"^data:image\/[a-zA-Z]+;base64,", string.Empty);
                 existingAcc.Image = Convert.FromBase64String(rawImg);
                 workPomodoroContext!.Update(existingAcc);
                 workPomodoroContext!.SaveChanges();
                 return true;
-            });            
+
+            }catch (Exception)
+            {
+                return false;
+            }            
         }
     }
 }

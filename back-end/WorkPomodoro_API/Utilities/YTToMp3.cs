@@ -18,11 +18,11 @@ namespace WorkPomodoro_API.Utilities
         private static string msg = "";
         public static async Task GetProgress(this HttpContext ctx)
         {
-            
+
             if (totalProgress < 100)
             {
                 await ctx.Response.WriteAsync("data: Downloaded: " + totalProgress + "%\n");
-              
+
             }
             else
             {
@@ -32,33 +32,9 @@ namespace WorkPomodoro_API.Utilities
             await ctx.Response.Body.FlushAsync();
         }
 
-
-        private static string RunLinuxCommand(string command, string args)
-        {
-            var process = new Process()
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = command,
-                    Arguments = args,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                }
-            };
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            string error = process.StandardError.ReadToEnd();
-            process.WaitForExit();
-
-            if (string.IsNullOrEmpty(error)) { return output; }
-            else { return error; }
-        }
-
         public static async Task<string> GetMP3(string VideoURL)
         {
-            string source = Path.Combine(Directory.GetCurrentDirectory(),"tempVid");
+            string source = Path.Combine(Directory.GetCurrentDirectory(), "tempVid");
             if (!Directory.Exists(source))
             {
                 Directory.CreateDirectory(source);
@@ -99,31 +75,72 @@ namespace WorkPomodoro_API.Utilities
                 }
             }
             msg = ("Conversion in Progress...");
-            string musicPath = Path.Combine(source, $"{MP3Name}");
-            
+            string audioPath = Path.Combine(source, $"{MP3Name}");
+
             string videoPath = Path.Combine(source, vid.FullName);
             string command = "ffmpeg";
-            string args= $"-i \"{videoPath}\" {musicPath}";
-            string conversionRes = RunLinuxCommand(command,args);
-            //var inputFile = new MediaFile { Filename =  videoPath};
-            //var outputFile = new MediaFile { Filename = musicPath };
-            
-            //using (var engine = new Engine())
-            //{
-            //    engine.GetMetaData(inputFile);
-            //    engine.Convert(inputFile, outputFile);
-            //}
+            string args = $"-i \"{videoPath}\" {audioPath}";
+            string conversionRes = await RunLinuxCommand(command, args);
+          
 
             msg = ("Saving to your Browser...");
 
             /*The byte array MUST BE CONVERTED TO Base64 String, so that it could work with JSON response,
              and be DECODED back to mp3 later on by the front-end.*/
-            
-            string mp3Data = Convert.ToBase64String(File.ReadAllBytes(musicPath));
-            File.Delete(videoPath);
-            return mp3Data;            
+
+            string result = null!;
+            if (conversionRes != null)
+            {
+                result = await getResultFile(audioPath, videoPath);
+            }
+            return result;
 
         }
+
+        private static Task<string> RunLinuxCommand(string command, string args)
+        {
+            Debug.WriteLine("The conversion process now starts!");
+            return Task.Run(() =>
+            {
+
+                var process = new Process()
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = command,
+                        Arguments = args,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                    }
+                };
+                process.Start();
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+                process.WaitForExit();
+                Debug.WriteLine("The conversion is now over!");
+                if (string.IsNullOrEmpty(error)) { return output; }
+                else { return error; }
+            });
+        }
+        private static Task<string> getResultFile(string audioPath, string videoPath)
+        {
+            return Task.Run(() =>
+            {
+                do
+                {
+                    Thread.Sleep(100);
+                } while (!File.Exists(audioPath));
+
+
+                string mp3Data = Convert.ToBase64String(File.ReadAllBytes(audioPath));
+                File.Delete(videoPath);
+                File.Delete(audioPath);
+                return mp3Data;
+            });
+        }
+
 
         private static void Engine_ConvertProgressEvent(object? sender, ConvertProgressEventArgs e)
         {

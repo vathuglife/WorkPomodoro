@@ -18,23 +18,22 @@ namespace WorkPomodoro_API.AccountAPI.Authentication.ValidateToken
             _dbContext = dbContext;
             _accountUtils = accountUtils;
         }
-        public async Task<bool> Handle(ValidateTokenRequest request, CancellationToken cancellationToken)
+        public Task<bool> Handle(ValidateTokenRequest request, CancellationToken cancellationToken)
         {
             
-            bool result = await System.Threading.Tasks.Task.Run(() =>
+            return System.Threading.Tasks.Task.Run(() =>
             {
                 /*Extracts the userId from the Claim, then passes it to the DbContext to check for existence in SQL.*/
                 IEnumerable<Claim> claims = _accountUtils.getClaims(request.token);
                 int userId = Int32.Parse(claims.Where(eachClaim => eachClaim.Type == "UserId").
                                 FirstOrDefault()!.Value);
+                
                 Account? account = _dbContext!.Accounts!
                 .FirstOrDefault(acc => acc!.Uid == userId!);
 
-
                 if (account == null) return false;
                 return true;
-            });
-            return result;
+            });            
         }
     }
 }

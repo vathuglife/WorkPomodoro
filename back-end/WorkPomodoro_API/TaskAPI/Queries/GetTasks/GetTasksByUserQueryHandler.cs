@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using System.Threading.Tasks;
 using WorkPomodoro_API.AccountAPI.Authentication.ValidateToken;
 using WorkPomodoro_API.Entities;
 using WorkPomodoro_API.TaskAPI.DTO;
@@ -30,18 +31,26 @@ namespace WorkPomodoro_API.TaskAPI.Queries.GetTasks
 
                 if (userId == 0) { return null!; }
 
-                List<Entities.Task> tasks = _dbContext.Tasks.Where(task => task.Uid == userId).ToList();
-                List<TaskDTO> result = new List<TaskDTO>();
-
-                foreach (Entities.Task task in tasks)
-                {
-                    TaskDTO taskDTO = _mapper.Map<TaskDTO>(task);
-                    result.Add(taskDTO);
-                }
-                return result;
+                List<Entities.Task> tasks = getTaskList(userId);                                
+                return getTaskDTOList(tasks);
 
             });
 
+        }
+        private List<Entities.Task> getTaskList(int userId)
+        {
+            return _dbContext.Tasks.Where(task => task.Uid == userId).ToList();
+        }
+        private List<TaskDTO> getTaskDTOList(List<Entities.Task> tasks)
+        {
+            List<TaskDTO> result = new List<TaskDTO>();
+
+            foreach (Entities.Task task in tasks)
+            {
+                TaskDTO taskDTO = _mapper.Map<TaskDTO>(task);
+                result.Add(taskDTO);
+            }
+            return result;
         }
     }
 }
