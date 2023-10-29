@@ -3,33 +3,36 @@ import {useNavigate} from 'react-router-dom'
 import {AxiosResponse,AxiosError } from 'axios'
 import {useState} from 'react'
 import axios from 'axios'
+
+
+
 export default function LoginRegisterForm(){	
 	let [username,updateUsername] = useState("");
-	let [password,updatePassword] = useState("");
-	
+	let [password,updatePassword] = useState("");	
 	let REGISTER_URL = "https://localhost:7263/workpomodoro/login"	
 	let navigate = useNavigate();
+
 	const signup = ()=>{		
 		let path = '/register'
 		navigate(path);
 
 	}
-	const signin =()=>{
-		axios.post(REGISTER_URL,JSON.stringify({			
-			"username": username,
-			"password": password
-		}			
-		), {headers: { "Content-Type": "application/json" },
-        withCredentials: true})
-		.then((response:AxiosResponse)=>{			
-			if(response.status === 200){			
-				localStorage.setItem("user-token",response.data.token);
-			// 	route = '/countdown'
-			// }else{
-			// 	route = '/login'
+	const validateLogin = ()=>{
+		return axios.post(
+			REGISTER_URL,
+			JSON.stringify({			
+				"username": username,
+				"password": password
+			}			
+			), {headers: { "Content-Type": "application/json" },
+			withCredentials: true})
+		.then((response:AxiosResponse)=>{		
 			
+			if(response.status === 200){						
+				localStorage.setItem("user-token",response.data.token);		
 				//Automatic routing to the countdown page is already done by ReactRouter (AppRouter).
-				window.location.reload()
+				//window.location.reload()
+				return response.data
 			}
 		})
 		.catch((reason: AxiosError) => {
@@ -39,15 +42,22 @@ export default function LoginRegisterForm(){
 		
 		
 		
+	}
+	const handleLogin =(e:React.MouseEvent)=>{
+		e.preventDefault();		
+		validateLogin().then(()=>{
+			navigate('/tasks')
+			window.location.reload()
+		})
 
-		}
+	}
 		
 		
 		
 	
 
     return(                   
-		<div className="login-container" >
+		<div className="login-container" >			 
 			<div className="form-container">
 				<form action="#">
 					<h1>Create Account</h1>
@@ -69,7 +79,7 @@ export default function LoginRegisterForm(){
 					<input type="password" placeholder="Password" value={password}
 						onChange={(e)=>updatePassword(e.target.value)}/>	
 					<a href="#">Forgot your password?</a>
-					<button className="log-in-btn" onClick={signin}>Sign In</button>
+					<button className="log-in-btn" onClick={(e)=>handleLogin(e)}>Sign In</button>
 				</form>
 			</div>
 			<div className="overlay-container">

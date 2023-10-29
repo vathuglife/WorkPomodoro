@@ -2,10 +2,15 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using System.Text;
 using WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails;
+using WorkPomodoro_API.MusicAPI.Commands.AddSongToPlaylist;
 using WorkPomodoro_API.MusicAPI.DTO;
-
+using WorkPomodoro_API.MusicAPI.DTO.Request;
+using WorkPomodoro_API.MusicAPI.DTO.Response;
+using WorkPomodoro_API.MusicAPI.Queries.GetFullSongList;
+using WorkPomodoro_API.MusicAPI.Queries.GetPlaylistSongs;
 using WorkPomodoro_API.MusicAPI.SSE;
 using WorkPomodoro_API.Utilities;
 
@@ -21,36 +26,48 @@ namespace WorkPomodoro_API.MusicAPI.Controllers
         {
             _mediator = mediator;
         }
-
-
-
-        [HttpPost]
-        [Route("workpomodoro/music/download")]        
+        
+        
+        [HttpGet]
+        [Route("workpomodoro/music/preview")]
         [Authorize]
-        public async Task<IActionResult> DownloadSong([FromBody] GetSongDTO getSongDTO)
+        public async Task<IActionResult> GetPreviewSongs()
         {
-            string url = getSongDTO.url!;
-            string base64file= await YTToMp3.GetMP3(url);
-            if (base64file == null)
-            {
-                return BadRequest("Something Went wrong.");
-            }
-            var mapper = MapperConfig.InitializeMapper();
-
-            SongDTO result = mapper.Map<SongDTO>(getSongDTO);
-            result.audioBase64 = base64file;
-
+            string? rawToken = Request.Headers[HeaderNames.Authorization].ToString().Remove(0, 7);
+            GetPreviewSongsQuery getPreviewSongsQuery = new GetPreviewSongsQuery();
+            getPreviewSongsQuery.token = rawToken;
+            List<PreviewSongDTO> result = await _mediator.Send(getPreviewSongsQuery);
             return Ok(result);
         }
+        
+
+
         [HttpGet]
-        [Route("workpomodoro/music/download/progress")]
+        [Route("workpomodoro/music/download/progress")]        
         [Authorize]
+       
         public async Task GetDownloadProgress()
         {
             await HttpContext.SSEInitAsync();
             Thread.Sleep(1000); //Delay between each write into the HttpContext.
             await HttpContext.GetProgress();
 
+        }
+
+
+        [HttpPost]
+        [Route("workpomodoro/music/playlist/all")]
+        [Authorize]
+        public async Task<IActionResult> GetPlaylistSongs([FromBody] List<RequestToPlaylistSongDTO> requestToPlaylistSongDTOs)
+        {
+
+            string? rawToken = Request.Headers[HeaderNames.Authorization].ToString().Remove(0, 7);
+            GetPlaylistSongsQuery getPlaylistSongsQuery = new GetPlaylistSongsQuery();
+            getPlaylistSongsQuery.songPlaylists = requestToPlaylistSongDTOs;
+            getPlaylistSongsQuery.token = rawToken;
+            
+            var result = await _mediator.Send(getPlaylistSongsQuery);
+            return Ok(result);
         }
     }
 }

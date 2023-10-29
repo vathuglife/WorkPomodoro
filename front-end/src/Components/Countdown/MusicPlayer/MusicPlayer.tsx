@@ -80,18 +80,10 @@ triggering the initSong() function to run once again.*/
     
     
     const loadSongFromDb = () => {
-        let dbName = 'workpomodoro'
-        let songsObjStore = 'songs'       
+        let dbName = 'workpomodoro'       
         let playlistObjStore = 'playlist'               
         var request = indexedDB.open(dbName)            
-        
-        //Runs when the database is not created/needs to be updated to newer version.
-        request.onupgradeneeded = () => {           
-            let db = request.result;
-            db.createObjectStore(songsObjStore)
-            db.createObjectStore(playlistObjStore)
-                                            
-        }
+                
         request.onsuccess = ()=>{
             let db = request.result            
             let transaction = db.transaction(playlistObjStore,'readonly')

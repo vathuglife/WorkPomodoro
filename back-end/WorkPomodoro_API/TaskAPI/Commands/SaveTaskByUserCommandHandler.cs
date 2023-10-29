@@ -56,8 +56,7 @@ namespace WorkPomodoro_API.TaskAPI.Commands
             {
 
                 TaskDTO taskDTO = taskDTOs[index];
-                Entities.Task task = new Entities.Task();
-                task = _mapper.Map<Entities.Task>(taskDTO);
+                Entities.Task task = _mapper.Map<Entities.Task>(taskDTO);
 
                 task.Uid = account.Uid;
                 task.Account = account;

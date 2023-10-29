@@ -9,10 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Reflection;
 using System.Text;
 using WorkPomodoro_API.AccountAPI.Queries.GetAccountDetails;
-
 using WorkPomodoro_API.Entities;
 using WorkPomodoro_API.Utilities;
 
@@ -36,7 +36,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     };
 });
 
-builder.Services.AddAuthorization(auth => {
+builder.Services.AddAuthorization(auth =>
+{
     auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
         .RequireAuthenticatedUser().Build());
@@ -76,12 +77,13 @@ builder.Services.AddSwaggerGen(
 
 
 
-var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-//var connString = builder.Configuration.GetConnectionString("WorkPomodoroDB");
-builder.Services.AddDbContext<WorkPomodoroContext>(    
-    options => {
+//var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+var connString = builder.Configuration.GetConnectionString("WorkPomodoroDB");
+builder.Services.AddDbContext<WorkPomodoroContext>(
+    options =>
+    {
         options.UseSqlServer(connString);
-        options.EnableSensitiveDataLogging();   
+        options.EnableSensitiveDataLogging();
     });
 builder.Services.AddScoped<AccountUtils>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
@@ -110,6 +112,27 @@ app.UseAuthorization();
 
 
 app.MapControllers();
+
+//Apply automatic migrations to the Database within the Container.
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    
+    var context = services.GetRequiredService<WorkPomodoroContext>();
+    var db = context.Database;
+    var cStr = context.Database.GetConnectionString();
+    logger.LogInformation("Migrating database...");
+
+    //while (!db.CanConnect())
+    //{
+    //    logger.LogInformation("Database not ready yet; waiting...");
+    //    Thread.Sleep(1000);
+    //}
+
+    context.Database.Migrate();
+    
+}
 
 app.Run();
 

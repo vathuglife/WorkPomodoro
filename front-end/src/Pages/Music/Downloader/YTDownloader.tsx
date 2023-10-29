@@ -10,7 +10,7 @@ import { IDBPCursorWithValue} from 'idb'
 import { SongDetailsRef } from './SongDetails/SongDetailsRef'
 import './YTDownloader.css'
 import DownloadProgress from './DownloadProgress/DownloadProgress'
-
+import { saveToClientDb } from '../../../Utils/IndexedDbUtils'
 
 export default function YTDownloader(){
     const [link, updateLink] = useState('');
@@ -78,60 +78,13 @@ export default function YTDownloader(){
     }
     
   
-    const saveToClientDb = async(songData:JSON)=>{                  
-        let dbName = 'workpomodoro'
-        let songsObjStore = 'songs'              
-        let playlistObjStore = 'playlist'  
-        var request = indexedDB.open(dbName)
-        
-        //Runs when the database is not created/needs to be updated to newer version.
-        request.onupgradeneeded = () => {           
-            let db = request.result;
-            db.createObjectStore(songsObjStore)
-            db.createObjectStore(playlistObjStore)                                
-        }
-        
-        //Runs when a database has already existed.
-        request.onsuccess = ()=>{
-            let db = request.result;
-            //Creates a group of commands (transaction) that stops automatically when any of 
-            //the command fails.
-            const transaction = db.transaction('songs','readwrite')            
-            const store = transaction.objectStore(songsObjStore)
-            //Finds all items in the object store, in reverse.
-            let latestItem = store.openCursor(null,'prev')            
-            latestItem.onsuccess = (event) => {
-                const cursor = (event.target as IDBRequest<IDBPCursorWithValue>).result;
-                if(cursor){
-                    const key = cursor.key;
-                    let newKey = updateSongId(key);
-                    console.log(`Latest key generated: ${newKey}`)
-                    store.put(songData,newKey)
-                }else{
-                    store.put(songData,"SON00000") //in case no song is available.
-                }
-            }                         
-        }
+    
        
-    const updateSongId = (oldSongId:IDBValidKey):IDBValidKey=>{
-        
-            let regex = '\\d+'
-            let temp = oldSongId.toString();
-            let newDigit = parseInt(temp.match(regex)![0])
-            newDigit++;
-            let result = ''
-            let prefix = "SON"
-            if(newDigit<10) result = prefix+"0000"+newDigit
-            else if(newDigit<100) result = prefix+"000"+newDigit
-            else if(newDigit<1000) result = prefix+"00"+newDigit
-            else if(newDigit<10000) result = prefix+"0"+newDigit                                
-            
-            return result;
-        }
+ 
                                                        
         
        
-    }
+    
               
 
 

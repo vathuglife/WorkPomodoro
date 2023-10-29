@@ -45,6 +45,7 @@ namespace WorkPomodoro_API.AccountAPI.Commands.CreateAccount
             newAccount.Password = hashedPwd;
             newAccount.Role = "US"; //US for user, AD for admin.
             newAccount.Status = true; //true means active.
+            newAccount.Image = new byte[32];
             _dbContext.Accounts.Add(newAccount);
             _dbContext.SaveChanges();
         }
@@ -59,7 +60,7 @@ namespace WorkPomodoro_API.AccountAPI.Commands.CreateAccount
             if (foundAccount == null) return null;
 
             ReadAccountDTO accountDTO = _mapper.Map<ReadAccountDTO>(foundAccount);
-            return null;
+            return accountDTO;
         }
     }
 }

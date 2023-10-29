@@ -91,6 +91,7 @@ export const ToDoList = forwardRef((_props:{},ref:Ref<ToDoListRefs>)=>{
             //let currentId = taskList.length 
             updateTaskInput("");
             updateViewMode(0);
+            updateActiveOption({ name: 'Pending', value: 0 });
             updateIsSaveBtn(true)            
             console.log(enteredKeys)
             let newTask = {name:enteredKeys,type:0}

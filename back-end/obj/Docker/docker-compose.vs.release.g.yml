@@ -1,7 +1,8 @@
 version: '3.4'
 
 services:
-  workpomodoroApi:
+  wpapi:
+    container_name: WorkPomodoro_API
     build:
       labels:
         com.microsoft.created-by: "visual-studio"

@@ -17,9 +17,10 @@ public partial class WorkPomodoroContext : DbContext
 
     public virtual DbSet<Account> Accounts { get; set; }
 
+    public virtual DbSet<Song> Songs { get; set; }
+
     public virtual DbSet<Task> Tasks { get; set; }
 
-   
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,6 +31,10 @@ public partial class WorkPomodoroContext : DbContext
             entity.ToTable("accounts");
 
             entity.Property(e => e.Uid).HasColumnName("uid");
+            entity.Property(e => e.Image)
+                .IsRequired()
+                .HasDefaultValueSql("(0x)")
+                .HasColumnName("image");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasColumnName("name");
@@ -50,6 +55,20 @@ public partial class WorkPomodoroContext : DbContext
                 .HasColumnName("username");
         });
 
+        modelBuilder.Entity<Song>(entity =>
+        {
+            entity.HasIndex(e => e.AccountUid, "IX_Songs_accountUid");
+
+            entity.Property(e => e.AccountUid).HasColumnName("accountUid");
+            entity.Property(e => e.AudioBase64).HasColumnName("audioBase64");
+            entity.Property(e => e.Duration).HasColumnName("duration");
+            entity.Property(e => e.Thumbnail).HasColumnName("thumbnail");
+            entity.Property(e => e.Title).HasColumnName("title");
+            entity.Property(e => e.Url).HasColumnName("url");
+
+            entity.HasOne(d => d.Account).WithMany(p => p.Songs).HasForeignKey(d => d.AccountUid);
+        });
+
         modelBuilder.Entity<Task>(entity =>
         {
             entity.HasKey(e => e.Tid).HasName("PK__tasks__DC105B0FD8ECF246");
@@ -57,9 +76,7 @@ public partial class WorkPomodoroContext : DbContext
             entity.ToTable("tasks");
 
             entity.Property(e => e.Tid).HasColumnName("tid");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("name");
+            entity.Property(e => e.Name).HasColumnName("name");
             entity.Property(e => e.Type).HasColumnName("type");
             entity.Property(e => e.Uid).HasColumnName("uid");
 

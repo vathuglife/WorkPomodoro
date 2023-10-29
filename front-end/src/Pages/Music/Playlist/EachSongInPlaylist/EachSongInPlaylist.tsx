@@ -1,23 +1,33 @@
-import {DbSong } from "../../Interfaces/Interfaces"
+import {Song } from "../../Interfaces/Interfaces"
 import {useState} from 'react'
 import DropdownMenu from '../../DropdownMenu/DropdownMenu';
 import { MenuItem } from "../../Interfaces/Interfaces";
 import {FaEllipsisV} from 'react-icons/fa';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-
+import { removeFromObjStore } from "../../../../Utils/IndexedDbUtils";
+import axios,{AxiosResponse} from "axios";
 
 interface EachSongProps{    
-    dbSong:DbSong;
+    song:Song;
     index:number;
 }
-export default function EachSongInPlaylist ({dbSong,index}:EachSongProps){
-    const [isDropdownActive,updateIsDropdownActive] = useState<Boolean>(false)    
-    const song = dbSong.value       
+export default function EachSongInPlaylist ({song,index}:EachSongProps){
+    const [isDropdownActive,updateIsDropdownActive] = useState<Boolean>(false)        
     const trashIcon:IconDefinition = faTrash as IconDefinition
+    const dbName = 'workpomodoro'
+    const objStoreName = 'playlist'
+    const TOKEN = localStorage.getItem('user-token');
+    const deleteSongUrl = 'https://localhost:7263/workpomodoro/music/playlist/remove'
+    const config = {
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization:'Bearer ' + TOKEN
+        }        
 
+    }
     const handleEllipsisClick = () => {
-        console.log('Currently selected key: '+dbSong.key)
+        console.log('Currently selected key: '+song.id)
         if(isDropdownActive)
             updateIsDropdownActive(false)
         else{
@@ -25,38 +35,29 @@ export default function EachSongInPlaylist ({dbSong,index}:EachSongProps){
         }
     }
            
-    const removeFromPlaylist = ()=>{
-        console.log('delete button is clicked!')
-        let remove = confirm('Do you really want to remove this song from the playlist?')
-        if(remove){
-            let dbName = 'workpomodoro'                              
-            let playlistObjStore = 'playlist'
-            var request = indexedDB.open(dbName)                
-            
-            //Runs when a database has already existed.
-            request.onsuccess = ()=>{
-                let db = request.result;
-                //Creates a group of commands (transaction) that stops automatically when any of 
-                //the command fails.
-                const transaction = db.transaction(playlistObjStore,'readwrite')            
-                const playlistDeleteRequest = transaction.objectStore(playlistObjStore).delete(dbSong.key)            
-                playlistDeleteRequest.onsuccess = ()=>{
-                    console.log('Successfully removed song from Playlist.')
-                }
-                playlistDeleteRequest.onerror = ()=>{
-                    console.log('The song might not be existent in the Playlist.')
-                }                                                      
-            }
-        }
-    }  
+    
   
+    const removeFromPlaylist = ()=>{
+        let isDelete = confirm('Do you want to remove this song from the playlist?')
+        if(isDelete){
+            const data = {id:song.id}
+            removeFromObjStore(dbName,objStoreName,song.id)
+            axios.post(deleteSongUrl,data,config)
+                .then(
+                    (response:AxiosResponse)=>{
+                        console.log(response.data)
+                    }
+                )
+        }
+            
+    }
     const menuList:MenuItem[] = [        
         {icon:trashIcon,label:'Remove from playlist',color:'red',function:removeFromPlaylist}
     ]
     return(
         <li className='list-item'>
             <div className='index'>{index+1}</div>
-            <img className='thumbnail' src={dbSong.value.thumbnail}></img>
+            <img className='thumbnail' src={song.thumbnail}></img>
             <div className='song-info'>
                 <div className='song-title'>{song.title}</div>
                 <div className='song-duration'>{song.duration}</div>

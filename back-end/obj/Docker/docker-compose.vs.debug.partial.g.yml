@@ -1,8 +1,9 @@
 version: '3.4'
 
 services:
-  workpomodoroApi:
-    image: workpomodoroapi:dev
+  wpapi:
+    image: wpapi:dev
+    container_name: WorkPomodoro_API
     build:
       target: base
       labels:

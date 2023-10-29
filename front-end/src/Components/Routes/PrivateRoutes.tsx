@@ -26,9 +26,7 @@ function BackgroundImg(){
     )
 }
 
-export default function PrivateRoutes() {
-   
-    
+export default function PrivateRoutes() {       
     return (
         <div>
         {/*The NavBar which is exclusively for those signed in.*/}

@@ -32,14 +32,20 @@ namespace WorkPomodoro_API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Uid"));
 
                     b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varbinary(max)")
+                        .HasColumnName("image")
+                        .HasDefaultValueSql("(0x)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("name");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasMaxLength(60)
                         .IsUnicode(false)
                         .HasColumnType("char(60)")
@@ -47,6 +53,7 @@ namespace WorkPomodoro_API.Migrations
                         .IsFixedLength();
 
                     b.Property<string>("Role")
+                        .IsRequired()
                         .HasMaxLength(2)
                         .IsUnicode(false)
                         .HasColumnType("char(2)")
@@ -58,6 +65,7 @@ namespace WorkPomodoro_API.Migrations
                         .HasColumnName("status");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)")
@@ -67,6 +75,54 @@ namespace WorkPomodoro_API.Migrations
                         .HasName("PK__accounts__DD701264A3FCF6EB");
 
                     b.ToTable("accounts", (string)null);
+                });
+
+            modelBuilder.Entity("WorkPomodoro_API.Entities.Song", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AccountUid")
+                        .IsRequired()
+                        .HasColumnType("int")
+                        .HasColumnName("accountUid");
+
+                    b.Property<byte[]>("AudioBase64")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)")
+                        .HasColumnName("audioBase64");
+
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("duration");
+
+                    b.Property<bool>("IsInPlaylist")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Thumbnail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("thumbnail");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("title");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("url");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "AccountUid" }, "IX_Songs_accountUid");
+
+                    b.ToTable("Songs");
                 });
 
             modelBuilder.Entity("WorkPomodoro_API.Entities.Task", b =>
@@ -80,8 +136,7 @@ namespace WorkPomodoro_API.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
 
                     b.Property<bool?>("Type")
@@ -100,6 +155,17 @@ namespace WorkPomodoro_API.Migrations
                     b.ToTable("tasks", (string)null);
                 });
 
+            modelBuilder.Entity("WorkPomodoro_API.Entities.Song", b =>
+                {
+                    b.HasOne("WorkPomodoro_API.Entities.Account", "Account")
+                        .WithMany("Songs")
+                        .HasForeignKey("AccountUid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
             modelBuilder.Entity("WorkPomodoro_API.Entities.Task", b =>
                 {
                     b.HasOne("WorkPomodoro_API.Entities.Account", "Account")
@@ -112,6 +178,8 @@ namespace WorkPomodoro_API.Migrations
 
             modelBuilder.Entity("WorkPomodoro_API.Entities.Account", b =>
                 {
+                    b.Navigation("Songs");
+
                     b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618

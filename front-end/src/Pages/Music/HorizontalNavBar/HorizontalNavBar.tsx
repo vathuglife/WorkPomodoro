@@ -17,7 +17,7 @@ export default function HorizontalNavBar({updateSubComponent}:HorizontalNavBarPr
         {icon:faList,text:'All Songs'},
         {icon:faDownload,text:'Download'}
     ]    
-    const [selected,updateSelected] = useState(0);
+    const [selected,updateSelected] = useState(1);
     /*Selection workflow:
     1. User clicks on one of the hyperlinks in links array..
     2. The index of that hyperlink (e.g. 0 - Playlist) is saved. 
@@ -37,7 +37,8 @@ export default function HorizontalNavBar({updateSubComponent}:HorizontalNavBarPr
                             updateSubComponent(index)
                             console.log('Current sub component: '+index)
                         }}                   
-                        className={`navbar-item ${selected == index && "active"}`}>
+                        className={`navbar-item ${selected == index && "active"}`}
+                        key={index}>
                         <div className='fa-icon'><FontAwesomeIcon icon={eachLink.icon}/></div>
                         <div className='hor-navbar-txt'>{eachLink.text}</div>
                     </li>

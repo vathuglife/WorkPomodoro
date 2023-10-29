@@ -27,6 +27,7 @@ export default function BreaktimePage(){
         }else{
             audioPlayer.play()
         }
+        return(()=>{audioPlayer.pause()})
     },[isBreakTimeSelected])
     
     const handleBreakSession = (duration:number)=>{        
@@ -36,8 +37,12 @@ export default function BreaktimePage(){
     }
 
     const handleTimesUp = ()=>{ //navigates back to the countdown page after the break time ends.
-        alert('Time\'s up! It\'s time to return to work!')        
-        navigator('/countdown')
+        audioPlayer.play(); 
+        let isAccepted = confirm("Time's up! It's time to get back to work!")       
+        if(isAccepted){
+            navigator('/tasks')
+        }
+            
     }
 
 

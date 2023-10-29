@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using WorkPomodoro_API.AccountAPI.DTO;
 using WorkPomodoro_API.Entities;
-using WorkPomodoro_API.MusicAPI.DTO;
+using WorkPomodoro_API.MusicAPI.DTO.Request;
+using WorkPomodoro_API.MusicAPI.DTO.Response;
 using WorkPomodoro_API.TaskAPI.DTO;
 
 namespace WorkPomodoro_API.Utilities
@@ -19,7 +20,13 @@ namespace WorkPomodoro_API.Utilities
                 cfg.CreateMap<UpdateAccountDTO, Account>();                
                 cfg.CreateMap<Account, CreateAccountDTO>();
                 cfg.CreateMap<Account, ReadAccountDTO>();
-                cfg.CreateMap<GetSongDTO, SongDTO>();
+                cfg.CreateMap<NewSongDTO, PlaylistSongDTO>();
+                cfg.CreateMap<NewSongDTO, Song>();
+                cfg.CreateMap<Song, NewSongDTO>();
+                cfg.CreateMap<PreviewSongDTO, Song>();
+                cfg.CreateMap<PlaylistSongDTO, Song>();
+                cfg.CreateMap<Song,PlaylistSongDTO>();
+                cfg.CreateMap<Song, PreviewSongDTO>();
                 cfg.CreateMap<TaskDTO, Entities.Task>();
                 cfg.CreateMap<Entities.Task, TaskDTO>();
             });

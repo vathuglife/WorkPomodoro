@@ -5,7 +5,7 @@
 version: '3'
 services: 
     wp_frontend:    
-        image: ${DOCKER_REGISTRY-}wp_frontend:latest
+        image: ${DOCKER_REGISTRY-}workpomodoro_fe:alphav1
         build:
             context: ./
             dockerfile: Dockerfile

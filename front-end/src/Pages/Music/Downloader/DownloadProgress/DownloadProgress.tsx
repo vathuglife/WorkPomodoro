@@ -57,7 +57,7 @@ export default function DownloadProgress({progress}:DownloadProgressProps){
             position:'absolute',
             right:'0%',            
             top:'-0.6%',
-            borderRadius:'25px'
+            borderRadius:'30px'
         }
     }
     const progressTextStyle:{[key:string]:React.CSSProperties} ={

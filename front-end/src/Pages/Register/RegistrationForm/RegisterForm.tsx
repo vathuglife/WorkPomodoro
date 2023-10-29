@@ -8,10 +8,9 @@ export default function RegisterForm(){
 	let [fullName,updateFullName] = useState("");
 	let [username,updateUsername] = useState("");
 	let [password,updatePassword] = useState("");
-	let REGISTER_URL = "https://localhost:7263/workpomodoro/signup"	
-	
-	const handleSignup = ()=>{
-								
+	let REGISTER_URL = "https://localhost:7263/workpomodoro/signup"		
+	const handleSignup = (e:React.MouseEvent)=>{
+		e.preventDefault();
 		axios.post(REGISTER_URL,JSON.stringify({
 			"name": fullName,
 			"username": username,
@@ -27,8 +26,7 @@ export default function RegisterForm(){
 				navigate(route)
 			}
 		  })
-		  .catch((reason: AxiosError) => {
-			alert (reason.response?.data)
+		  .catch((reason: AxiosError) => {			
 			console.log(reason.message)
 		  })
 		
@@ -62,7 +60,7 @@ export default function RegisterForm(){
 					<input type="password" placeholder="Password" value={password}
 						onChange={(e)=>updatePassword(e.target.value)}/>		
 					<br></br>			
-					<button className="sign-up-btn" onClick={handleSignup}>I'm done!</button>
+					<button className="sign-up-btn" onClick={e=>handleSignup(e)}>I'm done!</button>
 				</form>
 			</div>
 			<div className="overlay-container">
